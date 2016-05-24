@@ -418,6 +418,7 @@ Public Class SPYFORM
     Const WM_LBUTTONUP = &H202
     Const WM_KEYDOWN = &H100
     Const WM_KEYUP = &H101
+
     Private Sub 发送一次点击ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 发送一次点击ToolStripMenuItem.Click
 
         If TextBox1.Text <> "" AndAlso TextBox1.Text <> "0" Then
@@ -428,8 +429,6 @@ Public Class SPYFORM
 
 
     End Sub
-
-
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
 

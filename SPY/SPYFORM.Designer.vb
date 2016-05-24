@@ -77,7 +77,7 @@ Partial Class SPYFORM
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(168, 384)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(304, 54)
@@ -86,7 +86,7 @@ Partial Class SPYFORM
         'TextBox5
         '
         Me.TextBox5.Location = New System.Drawing.Point(168, 456)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox5.Multiline = True
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(304, 54)
@@ -95,7 +95,7 @@ Partial Class SPYFORM
         'TextBox3
         '
         Me.TextBox3.Location = New System.Drawing.Point(168, 311)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox3.Multiline = True
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(304, 54)
@@ -154,7 +154,7 @@ Partial Class SPYFORM
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Location = New System.Drawing.Point(397, 18)
-        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(59, 19)
         Me.CheckBox1.TabIndex = 7
@@ -164,7 +164,7 @@ Partial Class SPYFORM
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(168, 195)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(304, 25)
         Me.TextBox2.TabIndex = 2
@@ -172,7 +172,7 @@ Partial Class SPYFORM
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(168, 151)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(304, 25)
         Me.TextBox1.TabIndex = 1
@@ -221,7 +221,7 @@ Partial Class SPYFORM
         Me.CheckBox2.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.CheckBox2.ForeColor = System.Drawing.Color.Salmon
         Me.CheckBox2.Location = New System.Drawing.Point(295, 19)
-        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(93, 19)
         Me.CheckBox2.TabIndex = 0
@@ -255,7 +255,7 @@ Partial Class SPYFORM
         'TextBox6
         '
         Me.TextBox6.Location = New System.Drawing.Point(168, 239)
-        Me.TextBox6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox6.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox6.Multiline = True
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(304, 54)
@@ -285,7 +285,7 @@ Partial Class SPYFORM
         Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox4.Image = Global.SPY.My.Resources.Resources._set
         Me.PictureBox4.Location = New System.Drawing.Point(475, 151)
-        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(27, 25)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -298,7 +298,7 @@ Partial Class SPYFORM
         Me.PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox3.Image = Global.SPY.My.Resources.Resources.b
         Me.PictureBox3.Location = New System.Drawing.Point(475, 195)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(27, 25)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -310,7 +310,7 @@ Partial Class SPYFORM
         Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox2.Image = Global.SPY.My.Resources.Resources.a1
         Me.PictureBox2.Location = New System.Drawing.Point(475, 384)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(27, 25)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -321,7 +321,7 @@ Partial Class SPYFORM
         '
         Me.PictureBox1.Image = Global.SPY.My.Resources.Resources.drag
         Me.PictureBox1.Location = New System.Drawing.Point(461, 15)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(49, 44)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -407,7 +407,7 @@ Partial Class SPYFORM
         'PictureBox5
         '
         Me.PictureBox5.Location = New System.Drawing.Point(453, 86)
-        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(53, 50)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -454,9 +454,9 @@ Partial Class SPYFORM
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.DoubleBuffered = True
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "SPYFORM"
