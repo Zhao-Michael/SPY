@@ -52,6 +52,10 @@ Module spyapi
 
     '绘图相关
 
+    Declare Function SetProcessDPIAware Lib "user32.dll" () As Boolean
+
+    Declare Function GetDeviceCaps Lib "gdi32" Alias "GetDeviceCaps" (ByVal hdc As Integer, ByVal nIndex As Integer) As Integer
+
     Declare Function GetWindowDC Lib "user32" Alias "GetWindowDC" (ByVal hwnd As Integer) As Integer
 
     Declare Function SetROP2 Lib "gdi32" Alias "SetROP2" (ByVal hdc As Integer, ByVal nDrawMode As Integer) As Integer

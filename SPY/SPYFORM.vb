@@ -26,7 +26,6 @@ Public Class SPYFORM
 #End Region
 
 
-
     Private Sub 按下图片(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
             PictureBox1.Image = My.Resources.drag2
@@ -134,10 +133,41 @@ Public Class SPYFORM
     End Sub
 
     Private Sub SPYFORM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
         setsysmenu()
+
         RegisterHotKey(Handle, 234, Nothing, Keys.F3) '注册热键 
-        Control.CheckForIllegalCrossThreadCalls = False
+
+        CheckForIllegalCrossThreadCalls = False
+
         thread.Start()
+
+
+        Dim m_dpi As Single = 0.0
+
+        SetProcessDPIAware()
+
+        Dim desktopDC As Integer = GetDC(GetDesktopWindow())
+
+        Dim dpiX = GetDeviceCaps(desktopDC, 90)
+
+
+        '96 DPI = 100% scaling
+        '        120 DPI = 125% scaling
+        '        144 DPI = 150% scaling
+        '        192 DPI = 200% scaling
+
+        'If dpiX = 96 Then
+        '    m_dpi = 1
+        'ElseIf dpiX = 120 Then
+        '    m_dpi = 1.25
+        'ElseIf dpiX = 150 Then
+        '    m_dpi = 1.44
+        'ElseIf dpiX = 192 Then
+        '    m_dpi = 1.92
+        'End If
+
 
         Dim t As New Threading.Thread(Sub()
 
@@ -148,17 +178,14 @@ Public Class SPYFORM
 
                                                   Dim bit As Bitmap = New Bitmap(20, 20)
                                                   Dim g As Graphics = Graphics.FromImage(bit)
-                                                  g.CopyFromScreen(New Point(point.X - 10, point.Y - 10), New Point(0, 0), New Size(20, 20))
+
+                                                  g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
 
 
                                                   PictureBox5.Image = bit
 
 
-
                                                   Dim color = bit.GetPixel(10, 10)
-
-
-
 
 
                                                   Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
@@ -355,13 +382,20 @@ Public Class SPYFORM
 
 #End Region
 
-    Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick
+    Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick, Label6.DoubleClick
         If sender.Equals(Label2) Then My.Computer.Clipboard.SetText(TextBox1.Text)
         If sender.Equals(Label3) Then My.Computer.Clipboard.SetText(TextBox2.Text)
         If sender.Equals(Label5) Then My.Computer.Clipboard.SetText(TextBox6.Text)
+        If sender.Equals(Label6) Then
+            If Label6.Text.Contains("#") Then
+                My.Computer.Clipboard.SetText("#" + Label6.Text.Split("#")(1))
+            End If
+        End If
         If sender.Equals(Label8) Then My.Computer.Clipboard.SetText(TextBox3.Text)
         If sender.Equals(Label9) Then My.Computer.Clipboard.SetText(TextBox4.Text)
         If sender.Equals(Label11) Then My.Computer.Clipboard.SetText(TextBox5.Text)
+
+
     End Sub
 
     Private Sub 双击复制句柄(sender As Object, e As EventArgs) Handles Label2.MouseDoubleClick
