@@ -71,6 +71,10 @@ Module spyapi
 
     Declare Function Rectangle Lib "gdi32" Alias "Rectangle" (ByVal hdc As Integer, ByVal X1 As Integer, ByVal Y1 As Integer, ByVal X2 As Integer, ByVal Y2 As Integer) As Integer
 
+
+
+
+
     Public Enum WindowShowStyle As UInteger
         ''' <summary>Hides the window and activates another window.</summary>
         ''' <remarks>See SW_HIDE</remarks>

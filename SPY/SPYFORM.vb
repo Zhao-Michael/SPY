@@ -129,6 +129,9 @@ Public Class SPYFORM
         If m.WParam = 234 Then
             CheckBox2.Checked = Not CheckBox2.Checked
         End If
+        If m.Msg = 274 Then
+            If m.WParam = 1998 Then Me.Hide()
+        End If
         MyBase.WndProc(m)
     End Sub
 
@@ -223,6 +226,8 @@ Public Class SPYFORM
         Dim handle = GetSystemMenu(Me.Handle, False)
         RemoveMenu(handle, 2, MenuFlags.MF_BYPOSITION)
         RemoveMenu(handle, 3, MenuFlags.MF_BYPOSITION)
+
+        AppendMenuA(handle, MenuFlags.MF_STRING, 1998, "管理员")
     End Sub
 #End Region
 
