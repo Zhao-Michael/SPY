@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing
+Imports System.Runtime.InteropServices
+
 Public Class SPYFORM
     Dim thread As New Threading.Thread(AddressOf check)
     Dim flag As Boolean = True  '线程是否运行
@@ -130,7 +132,19 @@ Public Class SPYFORM
             CheckBox2.Checked = Not CheckBox2.Checked
         End If
         If m.Msg = 274 Then
-            If m.WParam = 1998 Then Me.Hide()
+            If m.WParam = 1998 Then
+
+                Dim info = New SHELLEXECUTEINFO()
+                info.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(info)
+                info.lpVerb = "runas"
+                info.nShow = SW_NORMAL
+                info.lpFile = Application.ExecutablePath
+
+                If ShellExecuteEx(info) Then
+                    Close()
+                End If
+
+            End If
         End If
         MyBase.WndProc(m)
     End Sub
@@ -175,29 +189,33 @@ Public Class SPYFORM
         Dim t As New Threading.Thread(Sub()
 
                                           While True
+                                              Try
 
-                                              If CheckBox2.Checked Then
-                                                  '该点颜色
+                                                  If CheckBox2.Checked Then
+                                                      '该点颜色
 
-                                                  Dim bit As Bitmap = New Bitmap(20, 20)
-                                                  Dim g As Graphics = Graphics.FromImage(bit)
+                                                      Dim bit As Bitmap = New Bitmap(20, 20)
+                                                      Dim g As Graphics = Graphics.FromImage(bit)
 
-                                                  g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
-
-
-                                                  PictureBox5.Image = bit
+                                                      g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
 
 
-                                                  Dim color = bit.GetPixel(10, 10)
+                                                      PictureBox5.Image = bit
 
 
-                                                  Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
-
-                                                  Label10.BackColor = color
+                                                      Dim color = bit.GetPixel(10, 10)
 
 
-                                              End If
+                                                      Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
 
+                                                      Label10.BackColor = color
+
+
+                                                  End If
+
+                                              Catch ex As Exception
+
+                                              End Try
                                           End While
 
                                       End Sub) With {.IsBackground = True}

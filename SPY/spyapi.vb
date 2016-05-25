@@ -71,9 +71,30 @@ Module spyapi
 
     Declare Function Rectangle Lib "gdi32" Alias "Rectangle" (ByVal hdc As Integer, ByVal X1 As Integer, ByVal Y1 As Integer, ByVal X2 As Integer, ByVal Y2 As Integer) As Integer
 
+    Public Structure SHELLEXECUTEINFO
+        Public cbSize As Integer
+        Public fMask As Integer
+        Public hwnd As IntPtr
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpVerb As String
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpFile As String
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpParameters As String
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpDirectory As String
+        Dim nShow As Integer
+        Dim hInstApp As IntPtr
+        Dim lpIDList As IntPtr
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpClass As String
+        Public hkeyClass As IntPtr
+        Public dwHotKey As Integer
+        Public hIcon As IntPtr
+        Public hProcess As IntPtr
+    End Structure
 
 
+    <DllImport("Shell32", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Public Function ShellExecuteEx(ByRef lpExecInfo As SHELLEXECUTEINFO) As Boolean
+    End Function
 
+    Public Const SW_NORMAL = 1
 
     Public Enum WindowShowStyle As UInteger
         ''' <summary>Hides the window and activates another window.</summary>
