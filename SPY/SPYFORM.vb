@@ -7,6 +7,7 @@ Public Class SPYFORM
 
     Dim isdraw As Boolean = False
 
+
 #Region "移动窗体"
     Public X, Y As Integer
     Public moveflag As Boolean = True
@@ -31,7 +32,10 @@ Public Class SPYFORM
     Private Sub 按下图片(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
             PictureBox1.Image = My.Resources.drag2
-            SetSystemCursor(Cursors.UpArrow.CopyHandle, 32512)
+
+            SetSystemCursor(CursorGenerator.CreateCursor(New Bitmap(My.Resources.cross), 30, 30).CopyHandle(), 32512)
+
+
             If e.Button = Windows.Forms.MouseButtons.Left Then
                 flag = True
                 CheckBox2.Checked = flag
@@ -97,21 +101,24 @@ Public Class SPYFORM
                     TextBox5.Text = "拒绝访问！"
                 End Try
 
-                'If isdraw AndAlso handle <> 0 Then
+                If isdraw AndAlso handle <> 0 Then
 
-                '    DeskHwnd = GetDesktopWindow()
-                '    DeskDC = GetWindowDC(DeskHwnd)
-                '    oldRop2 = SetROP2(DeskDC, 10)
-                '    newPen = CreatePen(0, 2, 0)
+                    'DeskHwnd = GetDesktopWindow()
+                    'DeskDC = GetWindowDC(DeskHwnd)
+                    'oldRop2 = SetROP2(DeskDC, 10)
+                    'newPen = CreatePen(0, 2, 0)
 
-                '    Console.WriteLine(r1.X.ToString() + "  ", r1.Y.ToString() + "  ", r1.Right.ToString() + "  ", r1.Bottom.ToString() + "  ")
+                    'Console.WriteLine(r1.X.ToString() + "  ", r1.Y.ToString() + "  ", r1.Right.ToString() + "  ", r1.Bottom.ToString() + "  ")
 
-                '    Rectangle(DeskDC, r1.X, r1.Y, 100, 100)
+                    'Rectangle(DeskDC, r1.X, r1.Y, 100, 100)
 
-                '    DeleteObject(newPen)
-                '    ReleaseDC(DeskHwnd, DeskDC)
+                    'DeleteObject(newPen)
+                    'ReleaseDC(DeskHwnd, DeskDC)
 
-                'End If
+
+                    'ControlPaint.DrawReversibleFrame(New Rectangle(r1.X, r1.Y, 100, 100), Color.Transparent, FrameStyle.Thick)
+
+                End If
 
 
             End If

@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="20.ico" />
+    <Content Include="Resources\cross.png" />
     <None Include="Resources\set.png" />
     <None Include="Resources\b.png" />
     <None Include="Resources\a1.png" />

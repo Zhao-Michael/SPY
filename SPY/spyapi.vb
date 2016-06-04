@@ -157,6 +157,39 @@ Module spyapi
 
 
 
+    Public Class CursorGenerator
+        ' Methods
+
+        Public Shared Function CreateCursor(ByVal bmp As Bitmap, ByVal xHotSpot As Integer, ByVal yHotSpot As Integer) As Cursor
+            Dim tmp As IconInfo = New IconInfo()
+            GetIconInfo(bmp.GetHicon(), tmp)
+            tmp.xHotspot = xHotSpot
+            tmp.yHotspot = yHotSpot
+            tmp.fIcon = False
+            Return New Cursor(CreateIconIndirect(tmp))
+        End Function
+
+        <DllImport("user32.dll")>
+        Public Shared Function CreateIconIndirect(ByRef icon As IconInfo) As IntPtr
+        End Function
+
+        <DllImport("user32.dll")>
+        Public Shared Function GetIconInfo(ByVal hIcon As IntPtr, ByRef pIconInfo As IconInfo) As Boolean
+        End Function
+
+        ' Nested Types
+        <StructLayout(LayoutKind.Sequential)>
+        Public Structure IconInfo
+            Public fIcon As Boolean
+            Public xHotspot As Integer
+            Public yHotspot As Integer
+            Public hbmMask As IntPtr
+            Public hbmColor As IntPtr
+        End Structure
+
+    End Class
+
+
 
 
 End Module
