@@ -1,9 +1,12 @@
 ﻿Imports System.Drawing
+Imports System.Runtime.InteropServices
+
 Public Class SPYFORM
     Dim thread As New Threading.Thread(AddressOf check)
     Dim flag As Boolean = True  '线程是否运行
 
     Dim isdraw As Boolean = False
+
 
 #Region "移动窗体"
     Public X, Y As Integer
@@ -101,19 +104,22 @@ Public Class SPYFORM
 
                 'If isdraw AndAlso currHwnd <> 0 Then
 
-                '    DeskHwnd = GetDesktopWindow()
-                '    DeskDC = GetWindowDC(DeskHwnd)
-                '    oldRop2 = SetROP2(DeskDC, 10)
-                '    newPen = CreatePen(0, 2, 0)
+                'DeskHwnd = GetDesktopWindow()
+                'DeskDC = GetWindowDC(DeskHwnd)
+                'oldRop2 = SetROP2(DeskDC, 10)
+                'newPen = CreatePen(0, 2, 0)
 
-                '    Console.WriteLine(r1.X.ToString() + "  ", r1.Y.ToString() + "  ", r1.Right.ToString() + "  ", r1.Bottom.ToString() + "  ")
+                'Console.WriteLine(r1.X.ToString() + "  ", r1.Y.ToString() + "  ", r1.Right.ToString() + "  ", r1.Bottom.ToString() + "  ")
 
-                '    Rectangle(DeskDC, r1.X, r1.Y, 100, 100)
+                'Rectangle(DeskDC, r1.X, r1.Y, 100, 100)
 
-                '    DeleteObject(newPen)
-                '    ReleaseDC(DeskHwnd, DeskDC)
+                'DeleteObject(newPen)
+                'ReleaseDC(DeskHwnd, DeskDC)
 
-                'End If
+
+                'ControlPaint.DrawReversibleFrame(New Rectangle(r1.X, r1.Y, 100, 100), Color.Transparent, FrameStyle.Thick)
+
+            End If
 
 
             End If
@@ -133,44 +139,94 @@ Public Class SPYFORM
         If m.WParam = 234 Then
             checkBoxFreeMode.Checked = Not checkBoxFreeMode.Checked
         End If
+        If m.Msg = 274 Then
+            If m.WParam = 1998 Then
+
+                Dim info = New SHELLEXECUTEINFO()
+                info.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(info)
+                info.lpVerb = "runas"
+                info.nShow = SW_NORMAL
+                info.lpFile = Application.ExecutablePath
+
+                If ShellExecuteEx(info) Then
+                    Close()
+                End If
+
+            End If
+        End If
         MyBase.WndProc(m)
     End Sub
 
     Private Sub SPYFORM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
         setsysmenu()
+
         RegisterHotKey(Handle, 234, Nothing, Keys.F3) '注册热键 
-        Control.CheckForIllegalCrossThreadCalls = False
+
+        CheckForIllegalCrossThreadCalls = False
+
         thread.Start()
+
+
+        Dim m_dpi As Single = 0.0
+
+        SetProcessDPIAware()
+
+        Dim desktopDC As Integer = GetDC(GetDesktopWindow())
+
+        Dim dpiX = GetDeviceCaps(desktopDC, 90)
+
+
+        '96 DPI = 100% scaling
+        '        120 DPI = 125% scaling
+        '        144 DPI = 150% scaling
+        '        192 DPI = 200% scaling
+
+        'If dpiX = 96 Then
+        '    m_dpi = 1
+        'ElseIf dpiX = 120 Then
+        '    m_dpi = 1.25
+        'ElseIf dpiX = 150 Then
+        '    m_dpi = 1.44
+        'ElseIf dpiX = 192 Then
+        '    m_dpi = 1.92
+        'End If
+
 
         Dim t As New Threading.Thread(Sub()
 
                                           While True
+                                              Try
 
-                                              If checkBoxFreeMode.Checked Then
-                                                  '该点颜色
+                                                  If CheckBox2.Checked Then
+                                                      '该点颜色
 
-                                                  Dim bit As Bitmap = New Bitmap(20, 20)
-                                                  Dim g As Graphics = Graphics.FromImage(bit)
-                                                  g.CopyFromScreen(New Point(point.X - 10, point.Y - 10), New Point(0, 0), New Size(20, 20))
+                                                      Dim bit As Bitmap = New Bitmap(20, 20)
+                                                      Dim g As Graphics = Graphics.FromImage(bit)
 
-
-                                                  pictureBoxSnap.Image = bit
-
+                                                      g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
 
 
-                                                  Dim color = bit.GetPixel(10, 10)
+                                                      PictureBox5.Image = bit
+
+
+                                                      Dim color = bit.GetPixel(10, 10)
 
 
 
 
 
-                                                  labelColorValue.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
+                                                      Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
 
-                                                  Label10.BackColor = color
+                                                      Label10.BackColor = color
 
 
-                                              End If
+                                                  End If
 
+                                              Catch ex As Exception
+
+                                              End Try
                                           End While
 
                                       End Sub) With {.IsBackground = True}
@@ -199,6 +255,8 @@ Public Class SPYFORM
         Dim handle = GetSystemMenu(Me.Handle, False)
         RemoveMenu(handle, 2, MenuFlags.MF_BYPOSITION)
         RemoveMenu(handle, 3, MenuFlags.MF_BYPOSITION)
+
+        AppendMenuA(handle, MenuFlags.MF_STRING, 1998, "管理员")
     End Sub
 #End Region
 
@@ -387,6 +445,7 @@ Public Class SPYFORM
     Const WM_LBUTTONUP = &H202
     Const WM_KEYDOWN = &H100
     Const WM_KEYUP = &H101
+
     Private Sub 发送一次点击ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 发送一次点击ToolStripMenuItem.Click
 
         If textBoxHwnd.Text <> "" AndAlso textBoxHwnd.Text <> "0" Then

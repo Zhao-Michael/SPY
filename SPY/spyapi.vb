@@ -55,6 +55,10 @@ Module spyapi
 
     '绘图相关
 
+    Declare Function SetProcessDPIAware Lib "user32.dll" () As Boolean
+
+    Declare Function GetDeviceCaps Lib "gdi32" Alias "GetDeviceCaps" (ByVal hdc As Integer, ByVal nIndex As Integer) As Integer
+
     Declare Function GetWindowDC Lib "user32" Alias "GetWindowDC" (ByVal hwnd As Integer) As Integer
 
     Declare Function SetROP2 Lib "gdi32" Alias "SetROP2" (ByVal hdc As Integer, ByVal nDrawMode As Integer) As Integer
@@ -69,6 +73,31 @@ Module spyapi
 
 
     Declare Function Rectangle Lib "gdi32" Alias "Rectangle" (ByVal hdc As Integer, ByVal X1 As Integer, ByVal Y1 As Integer, ByVal X2 As Integer, ByVal Y2 As Integer) As Integer
+
+    Public Structure SHELLEXECUTEINFO
+        Public cbSize As Integer
+        Public fMask As Integer
+        Public hwnd As IntPtr
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpVerb As String
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpFile As String
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpParameters As String
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpDirectory As String
+        Dim nShow As Integer
+        Dim hInstApp As IntPtr
+        Dim lpIDList As IntPtr
+        <MarshalAs(UnmanagedType.LPTStr)> Public lpClass As String
+        Public hkeyClass As IntPtr
+        Public dwHotKey As Integer
+        Public hIcon As IntPtr
+        Public hProcess As IntPtr
+    End Structure
+
+
+    <DllImport("Shell32", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Public Function ShellExecuteEx(ByRef lpExecInfo As SHELLEXECUTEINFO) As Boolean
+    End Function
+
+    Public Const SW_NORMAL = 1
 
     Public Enum WindowShowStyle As UInteger
         ''' <summary>Hides the window and activates another window.</summary>
@@ -129,6 +158,39 @@ Module spyapi
 
     End Enum
 
+
+
+    Public Class CursorGenerator
+        ' Methods
+
+        Public Shared Function CreateCursor(ByVal bmp As Bitmap, ByVal xHotSpot As Integer, ByVal yHotSpot As Integer) As Cursor
+            Dim tmp As IconInfo = New IconInfo()
+            GetIconInfo(bmp.GetHicon(), tmp)
+            tmp.xHotspot = xHotSpot
+            tmp.yHotspot = yHotSpot
+            tmp.fIcon = False
+            Return New Cursor(CreateIconIndirect(tmp))
+        End Function
+
+        <DllImport("user32.dll")>
+        Public Shared Function CreateIconIndirect(ByRef icon As IconInfo) As IntPtr
+        End Function
+
+        <DllImport("user32.dll")>
+        Public Shared Function GetIconInfo(ByVal hIcon As IntPtr, ByRef pIconInfo As IconInfo) As Boolean
+        End Function
+
+        ' Nested Types
+        <StructLayout(LayoutKind.Sequential)>
+        Public Structure IconInfo
+            Public fIcon As Boolean
+            Public xHotspot As Integer
+            Public yHotspot As Integer
+            Public hbmMask As IntPtr
+            Public hbmColor As IntPtr
+        End Structure
+
+    End Class
 
 
 
