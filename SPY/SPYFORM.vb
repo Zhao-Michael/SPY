@@ -27,24 +27,24 @@ Public Class SPYFORM
 
 
 
-    Private Sub 按下图片(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+    Private Sub 按下图片(sender As Object, e As MouseEventArgs) Handles PictureBoxMouseImage.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            PictureBox1.Image = My.Resources.drag2
-            SetSystemCursor(Cursors.UpArrow.CopyHandle, 32512)
+            PictureBoxMouseImage.Image = My.Resources.drag2
+            SetSystemCursor(Cursors.Cross.CopyHandle, 32512)
             If e.Button = Windows.Forms.MouseButtons.Left Then
                 flag = True
-                CheckBox2.Checked = flag
+                checkBoxFreeMode.Checked = flag
                 isdraw = True
             End If
         End If
     End Sub
 
-    Private Sub 松开图片(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+    Private Sub 松开图片(sender As Object, e As MouseEventArgs) Handles PictureBoxMouseImage.MouseUp
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            PictureBox1.Image = My.Resources.drag
+            PictureBoxMouseImage.Image = My.Resources.drag
             SystemParametersInfoA(87, 0, 0, &H2)
             flag = False
-            CheckBox2.Checked = flag
+            checkBoxFreeMode.Checked = flag
             isdraw = False
             SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0)
 
@@ -56,47 +56,50 @@ Public Class SPYFORM
 
     Dim sharedPen As New Pen(Brushes.Red, 4)
 
+    Dim currPosition As Rectangle
+
+    Dim currHwnd As Integer
 
     Sub check()
 
         Do
 
             GetCursorPos(point)
-            Label1.Text = "当前鼠标位置: (" + point.X.ToString + "," + point.Y.ToString + ")"
+            labelMousePos.Text = "当前鼠标位置: (" + point.X.ToString + "," + point.Y.ToString + ")"
             If flag = True Then
 
                 '窗口句柄
-                Dim handle As Integer = WindowFromPoint(point)
-                TextBox1.Text = handle
+                Dim currHwnd As Integer = WindowFromPoint(point)
+                textBoxHwnd.Text = currHwnd
                 '窗口大小
-                Dim r1 As New Rectangle
-                GetWindowRect(handle, r1)
-                Label7.Text = "窗体位置大小: " & "(" + r1.X.ToString & ":" & r1.Y.ToString + ")" & " " & "(" & (r1.Width - r1.X).ToString + " × " & (r1.Height - r1.Y).ToString + ")"
+
+                GetWindowRect(currHwnd, currPosition)
+                labelWinInfo.Text = "窗体位置大小: " & "(" + currPosition.X.ToString & ":" & currPosition.Y.ToString + ")" & " " & "(" & (currPosition.Width - currPosition.X).ToString + " × " & (currPosition.Height - currPosition.Y).ToString + ")"
                 '窗口PID
                 Dim pid As Integer
-                GetWindowThreadProcessId(handle, pid)
-                TextBox2.Text = pid
+                GetWindowThreadProcessId(currHwnd, pid)
+                textBoxPID.Text = pid
                 '窗口类名
                 Dim classname As New System.Text.StringBuilder(255)
-                If handle > 0 Then
-                    GetClassName(handle, classname, 255)
-                    TextBox3.Text = classname.ToString
+                If currHwnd > 0 Then
+                    GetClassName(currHwnd, classname, 255)
+                    textBoxWinClass.Text = classname.ToString
                 Else
-                    TextBox3.Text = Nothing
+                    textBoxWinClass.Text = Nothing
                 End If
                 '窗体文本
-                GetWindowTextA(TextBox1.Text, classname, 255)
-                TextBox4.Text = classname.ToString
+                GetWindowTextA(textBoxHwnd.Text, classname, 255)
+                textBoxWinText.Text = classname.ToString
                 '进程位置
                 Try
-                    Dim p As Process = Process.GetProcessById(TextBox2.Text)
-                    TextBox6.Text = p.MainWindowTitle   '窗口标题
-                    TextBox5.Text = p.MainModule.FileName
+                    Dim p As Process = Process.GetProcessById(textBoxPID.Text)
+                    textBoxWinTitle.Text = p.MainWindowTitle   '窗口标题
+                    textBoxEXEPath.Text = p.MainModule.FileName
                 Catch ex As Exception
-                    TextBox5.Text = "拒绝访问！"
+                    textBoxEXEPath.Text = "拒绝访问！"
                 End Try
 
-                'If isdraw AndAlso handle <> 0 Then
+                'If isdraw AndAlso currHwnd <> 0 Then
 
                 '    DeskHwnd = GetDesktopWindow()
                 '    DeskDC = GetWindowDC(DeskHwnd)
@@ -128,7 +131,7 @@ Public Class SPYFORM
 
     Protected Overrides Sub WndProc(ByRef m As Message)
         If m.WParam = 234 Then
-            CheckBox2.Checked = Not CheckBox2.Checked
+            checkBoxFreeMode.Checked = Not checkBoxFreeMode.Checked
         End If
         MyBase.WndProc(m)
     End Sub
@@ -143,7 +146,7 @@ Public Class SPYFORM
 
                                           While True
 
-                                              If CheckBox2.Checked Then
+                                              If checkBoxFreeMode.Checked Then
                                                   '该点颜色
 
                                                   Dim bit As Bitmap = New Bitmap(20, 20)
@@ -151,7 +154,7 @@ Public Class SPYFORM
                                                   g.CopyFromScreen(New Point(point.X - 10, point.Y - 10), New Point(0, 0), New Size(20, 20))
 
 
-                                                  PictureBox5.Image = bit
+                                                  pictureBoxSnap.Image = bit
 
 
 
@@ -161,7 +164,7 @@ Public Class SPYFORM
 
 
 
-                                                  Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
+                                                  labelColorValue.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
 
                                                   Label10.BackColor = color
 
@@ -208,8 +211,8 @@ Public Class SPYFORM
         Environment.Exit(0)
     End Sub
 
-    Private Sub 置顶(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        Me.TopMost = CheckBox1.Checked
+    Private Sub 置顶(sender As Object, e As EventArgs) Handles checkBoxTopmost.CheckedChanged
+        Me.TopMost = checkBoxTopmost.Checked
     End Sub
 
 
@@ -217,9 +220,9 @@ Public Class SPYFORM
         Me.BackColor = Color.FromArgb(235, 235, 235)
     End Sub
 
-    Private Sub 自由模式(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
-        flag = CheckBox2.Checked
-        If CheckBox2.Checked = True Then
+    Private Sub 自由模式(sender As Object, e As EventArgs) Handles checkBoxFreeMode.CheckedChanged
+        flag = checkBoxFreeMode.Checked
+        If checkBoxFreeMode.Checked = True Then
             PictureBox2.Image = Nothing
         Else
             PictureBox2.Image = My.Resources.a1
@@ -227,27 +230,27 @@ Public Class SPYFORM
     End Sub
 
     Private Sub 打开路径(sender As Object, e As EventArgs) Handles Label11.Click
-        Shell("explorer.exe /select," & TextBox5.Text, AppWinStyle.NormalFocus)
+        Shell("explorer.exe /select," & textBoxEXEPath.Text, AppWinStyle.NormalFocus)
     End Sub
 
 
 #Region "图片设置"
     '至上而下 
     '1=================================================================================
-    Private Sub PictureBox1_MouseHover(sender As Object, e As EventArgs) Handles PictureBox1.MouseHover
+    Private Sub PictureBox1_MouseHover(sender As Object, e As EventArgs) Handles PictureBoxMouseImage.MouseHover
         ToolTip3.Active = True
-        ToolTip3.Show("请左击图标拖动需要查看的窗体", PictureBox1, 40, 0, 1200)
+        ToolTip3.Show("请左击图标拖动需要查看的窗体", PictureBoxMouseImage, 40, 0, 1200)
     End Sub
-    Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
+    Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBoxMouseImage.MouseLeave
         ToolTip3.Active = False
     End Sub
 
     '2=================================================================================
 
     Private Sub 冻结窗体ToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles 冻结窗体ToolStripMenuItem.Click
-        解冻窗体ToolStripMenuItem.DropDownItems.Add(TextBox1.Text)
+        解冻窗体ToolStripMenuItem.DropDownItems.Add(textBoxHwnd.Text)
         AddHandler 解冻窗体ToolStripMenuItem.DropDownItems(解冻窗体ToolStripMenuItem.DropDownItems.Count - 1).Click, AddressOf enablectrl
-        EnableWindow(TextBox1.Text, False)
+        EnableWindow(textBoxHwnd.Text, False)
     End Sub
 
     Sub enablectrl(sender As Object, e As EventArgs)
@@ -256,13 +259,13 @@ Public Class SPYFORM
     End Sub
 
     Private Sub 解冻窗体ToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles 解冻窗体ToolStripMenuItem.Click
-        EnableWindow(TextBox1.Text, True)
+        EnableWindow(textBoxHwnd.Text, True)
     End Sub
 
     Private Sub 隐藏窗口ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 隐藏窗口ToolStripMenuItem.Click
-        显示窗口ToolStripMenuItem.DropDownItems.Add(TextBox1.Text)
+        显示窗口ToolStripMenuItem.DropDownItems.Add(textBoxHwnd.Text)
         AddHandler 显示窗口ToolStripMenuItem.DropDownItems(显示窗口ToolStripMenuItem.DropDownItems.Count - 1).Click, AddressOf showctrl
-        ShowWindow(TextBox1.Text, WindowShowStyle.Hide)
+        ShowWindow(textBoxHwnd.Text, WindowShowStyle.Hide)
     End Sub
 
     Sub showctrl(sender As Object, e As EventArgs)
@@ -275,14 +278,14 @@ Public Class SPYFORM
     End Sub
 
     Private Sub 强制最小化ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 强制最小化ToolStripMenuItem.Click
-        ShowWindow(TextBox1.Text, WindowShowStyle.ForceMinimized)
+        ShowWindow(textBoxHwnd.Text, WindowShowStyle.ForceMinimized)
     End Sub
 
     Private Sub 强制最大化ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 强制最大化ToolStripMenuItem.Click
-        ShowWindow(TextBox1.Text, WindowShowStyle.Maximize)
+        ShowWindow(textBoxHwnd.Text, WindowShowStyle.Maximize)
     End Sub
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-        If Val(TextBox1.Text) Mod 2 <> 0 Or TextBox1.Text = "0" Or TextBox1.Text = Nothing Then
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles textBoxHwnd.TextChanged
+        If Val(textBoxHwnd.Text) Mod 2 <> 0 Or textBoxHwnd.Text = "0" Or textBoxHwnd.Text = Nothing Then
             PictureBox4.Image = Nothing
             PictureBox2.Image = Nothing
         Else
@@ -308,8 +311,8 @@ Public Class SPYFORM
     Private Sub PictureBox3_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox3.MouseLeave
         ToolTip1.Active = False
     End Sub
-    Private Sub PID改变(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
-        If Val(TextBox2.Text) Mod 2 <> 0 Or TextBox2.Text = "0" Or TextBox2.Text = Nothing Then
+    Private Sub PID改变(sender As Object, e As EventArgs) Handles textBoxPID.TextChanged
+        If Val(textBoxPID.Text) Mod 2 <> 0 Or textBoxPID.Text = "0" Or textBoxPID.Text = Nothing Then
             PictureBox3.Image = Nothing
         Else
             PictureBox3.Image = My.Resources.b
@@ -320,12 +323,12 @@ Public Class SPYFORM
         PicMenu1.Show(PictureBox3, PictureBox4.Width + 5, 0)
     End Sub
     Private Sub 发送关闭消息ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 发送关闭消息ToolStripMenuItem.Click
-        Dim p As Process = Process.GetProcessById(TextBox2.Text)
+        Dim p As Process = Process.GetProcessById(textBoxPID.Text)
         p.CloseMainWindow()
     End Sub
     Private Sub 销毁进程ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 销毁进程ToolStripMenuItem.Click
 
-        Dim p As Process = Process.GetProcessById(TextBox2.Text)
+        Dim p As Process = Process.GetProcessById(textBoxPID.Text)
         p.Kill()
 
     End Sub
@@ -340,10 +343,10 @@ Public Class SPYFORM
         ToolTip2.Active = False
     End Sub
     Private Sub PictureBox2_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseClick
-        If TextBox1.Text = 0 Or TextBox1.Text Is Nothing Then Exit Sub
+        If textBoxHwnd.Text = 0 Or textBoxHwnd.Text Is Nothing Then Exit Sub
         If e.Button <> Windows.Forms.MouseButtons.Left Then Exit Sub
-        If CheckBox1.Checked = False Then
-            SetWindowTextA(TextBox1.Text, TextBox4.Text)
+        If checkBoxTopmost.Checked = False Then
+            SetWindowTextA(textBoxHwnd.Text, textBoxWinText.Text)
             Dim myerror As Integer = GetLastError()
             If myerror <> 0 Then
                 MsgBox("修改失败!" + vbCrLf + myerror, 64, "提示信息！")
@@ -356,21 +359,21 @@ Public Class SPYFORM
 #End Region
 
     Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick
-        If sender.Equals(Label2) Then My.Computer.Clipboard.SetText(TextBox1.Text)
-        If sender.Equals(Label3) Then My.Computer.Clipboard.SetText(TextBox2.Text)
-        If sender.Equals(Label5) Then My.Computer.Clipboard.SetText(TextBox6.Text)
-        If sender.Equals(Label8) Then My.Computer.Clipboard.SetText(TextBox3.Text)
-        If sender.Equals(Label9) Then My.Computer.Clipboard.SetText(TextBox4.Text)
-        If sender.Equals(Label11) Then My.Computer.Clipboard.SetText(TextBox5.Text)
+        If sender.Equals(Label2) Then My.Computer.Clipboard.SetText(textBoxHwnd.Text)
+        If sender.Equals(Label3) Then My.Computer.Clipboard.SetText(textBoxPID.Text)
+        If sender.Equals(Label5) Then My.Computer.Clipboard.SetText(textBoxWinTitle.Text)
+        If sender.Equals(Label8) Then My.Computer.Clipboard.SetText(textBoxWinClass.Text)
+        If sender.Equals(Label9) Then My.Computer.Clipboard.SetText(textBoxWinText.Text)
+        If sender.Equals(Label11) Then My.Computer.Clipboard.SetText(textBoxEXEPath.Text)
     End Sub
 
     Private Sub 双击复制句柄(sender As Object, e As EventArgs) Handles Label2.MouseDoubleClick
-        My.Computer.Clipboard.SetText(TextBox1.Text)
+        My.Computer.Clipboard.SetText(textBoxHwnd.Text)
     End Sub
 
-    Private Sub PictureBox5_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox5.Paint
+    Private Sub PictureBox5_Paint(sender As Object, e As PaintEventArgs) Handles pictureBoxSnap.Paint
 
-        e.Graphics.DrawRectangle(New Pen(Brushes.Green, 2), New Rectangle(1, 1, PictureBox5.Size.Width - 2, PictureBox5.Size.Height - 2))
+        e.Graphics.DrawRectangle(New Pen(Brushes.Green, 2), New Rectangle(1, 1, pictureBoxSnap.Size.Width - 2, pictureBoxSnap.Size.Height - 2))
 
         e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(2, 20), New Point(38, 20))
 
@@ -386,15 +389,51 @@ Public Class SPYFORM
     Const WM_KEYUP = &H101
     Private Sub 发送一次点击ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 发送一次点击ToolStripMenuItem.Click
 
-        If TextBox1.Text <> "" AndAlso TextBox1.Text <> "0" Then
-            SendMessage(TextBox1.Text, WM_KEYDOWN, Keys.Space, 0)
+        If textBoxHwnd.Text <> "" AndAlso textBoxHwnd.Text <> "0" Then
+            SendMessage(textBoxHwnd.Text, WM_KEYDOWN, Keys.Space, 0)
 
-            SendMessage(TextBox1.Text, WM_KEYUP, Keys.Space, 0)
+            SendMessage(textBoxHwnd.Text, WM_KEYUP, Keys.Space, 0)
         End If
 
 
     End Sub
 
+    Private Sub 移动目标窗口ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 移动目标窗口ToolStripMenuItem.Click
+
+        Dim r = InputBox("请输入目标窗口的位置，以逗号分隔"， "移动目标窗口", "100,100")
+
+        If r.Contains(",") AndAlso Split(r.ToArray(), ",").Length = 2 Then
+
+            Dim x As Integer = Split(r.ToArray(), ",")(0)
+            Dim y As Integer = Split(r.ToArray(), ",")(1)
+
+            MoveWindow(textBoxHwnd.Text, x, y, currPosition.Width - currPosition.X, currPosition.Height - currPosition.Y, True)
+
+        Else
+            MessageBox.Show(Me, "输入格式不对", "Error")
+
+        End If
+
+    End Sub
+    Private Sub 改变目标窗口大小ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 改变目标窗口大小ToolStripMenuItem.Click
+
+        Dim r = InputBox("请输入目标窗口的大小，以逗号分隔"， "改变目标窗口大小", (currPosition.Width - currPosition.X).ToString() + " , " + (currPosition.Height - currPosition.Y).ToString())
+
+        If r = "" Then Return
+
+        If r.Contains(",") AndAlso Split(r.ToArray(), ",").Length = 2 Then
+
+            Dim w As Integer = Split(r.ToArray(), ",")(0)
+            Dim h As Integer = Split(r.ToArray(), ",")(1)
+
+            MoveWindow(textBoxHwnd.Text, currPosition.X, currPosition.Y, w, h, True)
+
+        Else
+
+            MessageBox.Show(Me, "输入格式不对", "Error")
+
+        End If
+    End Sub
 
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
@@ -418,6 +457,9 @@ Public Class SPYFORM
 
     Declare Sub SHChangeNotify Lib "shell32.dll" (ByVal wEventId As Integer, ByVal uFlags As Integer, dwItem1 As Integer, dwItem2 As Integer)
     Const SHCNE_ASSOCCHANGED = &H8000000&
+
+
+
     Const SHCNF_IDLIST = &H0
 
 

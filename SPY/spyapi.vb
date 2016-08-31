@@ -49,6 +49,9 @@ Module spyapi
 
     Declare Function GetDesktopWindow Lib "user32" Alias "GetDesktopWindow" () As Integer
 
+    '移动窗口
+    Public Declare Function MoveWindow Lib "user32" (ByVal hWnd As IntPtr, ByVal x As Integer, ByVal y As Integer, ByVal nWidth As Integer, ByVal nHeight As Integer, ByVal bRepaint As Boolean) As Boolean
+
 
     '绘图相关
 
