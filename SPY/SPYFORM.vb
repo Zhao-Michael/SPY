@@ -121,8 +121,6 @@ Public Class SPYFORM
 
             End If
 
-
-            End If
             Threading.Thread.Sleep(50)
         Loop
 
@@ -199,7 +197,7 @@ Public Class SPYFORM
                                           While True
                                               Try
 
-                                                  If CheckBox2.Checked Then
+                                                  If checkBoxFreeMode.Checked Then
                                                       '该点颜色
 
                                                       Dim bit As Bitmap = New Bitmap(20, 20)
@@ -208,7 +206,7 @@ Public Class SPYFORM
                                                       g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
 
 
-                                                      PictureBox5.Image = bit
+                                                      pictureBoxSnap.Image = bit
 
 
                                                       Dim color = bit.GetPixel(10, 10)
@@ -217,7 +215,7 @@ Public Class SPYFORM
 
 
 
-                                                      Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
+                                                      labelColorValue.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
 
                                                       Label10.BackColor = color
 
@@ -274,9 +272,6 @@ Public Class SPYFORM
     End Sub
 
 
-    Private Sub 失去焦点(sender As Object, e As EventArgs) Handles MyBase.Deactivate
-        Me.BackColor = Color.FromArgb(235, 235, 235)
-    End Sub
 
     Private Sub 自由模式(sender As Object, e As EventArgs) Handles checkBoxFreeMode.CheckedChanged
         flag = checkBoxFreeMode.Checked
@@ -433,9 +428,9 @@ Public Class SPYFORM
 
         e.Graphics.DrawRectangle(New Pen(Brushes.Green, 2), New Rectangle(1, 1, pictureBoxSnap.Size.Width - 2, pictureBoxSnap.Size.Height - 2))
 
-        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(2, 20), New Point(38, 20))
+        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(0, 13), New Point(40, 13))
 
-        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(20, 2), New Point(20, 38))
+        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(14, 0), New Point(14, 40))
 
     End Sub
 
