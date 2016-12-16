@@ -64,10 +64,10 @@ Partial Class SPYFORM
         Me.强制最大化ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.移动目标窗口ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.改变目标窗口大小ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.labelColorValue = New System.Windows.Forms.Label()
         Me.pictureBoxSnap = New System.Windows.Forms.PictureBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.改变目标窗口大小ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PicMenu1.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,26 +79,29 @@ Partial Class SPYFORM
         '
         'textBoxWinText
         '
-        Me.textBoxWinText.Location = New System.Drawing.Point(126, 307)
+        Me.textBoxWinText.Location = New System.Drawing.Point(130, 303)
+        Me.textBoxWinText.Margin = New System.Windows.Forms.Padding(2)
         Me.textBoxWinText.Multiline = True
         Me.textBoxWinText.Name = "textBoxWinText"
-        Me.textBoxWinText.Size = New System.Drawing.Size(229, 44)
+        Me.textBoxWinText.Size = New System.Drawing.Size(173, 36)
         Me.textBoxWinText.TabIndex = 5
         '
         'textBoxEXEPath
         '
-        Me.textBoxEXEPath.Location = New System.Drawing.Point(126, 365)
+        Me.textBoxEXEPath.Location = New System.Drawing.Point(130, 359)
+        Me.textBoxEXEPath.Margin = New System.Windows.Forms.Padding(2)
         Me.textBoxEXEPath.Multiline = True
         Me.textBoxEXEPath.Name = "textBoxEXEPath"
-        Me.textBoxEXEPath.Size = New System.Drawing.Size(229, 44)
+        Me.textBoxEXEPath.Size = New System.Drawing.Size(173, 36)
         Me.textBoxEXEPath.TabIndex = 6
         '
         'textBoxWinClass
         '
-        Me.textBoxWinClass.Location = New System.Drawing.Point(126, 249)
+        Me.textBoxWinClass.Location = New System.Drawing.Point(130, 248)
+        Me.textBoxWinClass.Margin = New System.Windows.Forms.Padding(2)
         Me.textBoxWinClass.Multiline = True
         Me.textBoxWinClass.Name = "textBoxWinClass"
-        Me.textBoxWinClass.Size = New System.Drawing.Size(229, 44)
+        Me.textBoxWinClass.Size = New System.Drawing.Size(173, 36)
         Me.textBoxWinClass.TabIndex = 4
         '
         'Label11
@@ -107,10 +110,9 @@ Partial Class SPYFORM
         Me.Label11.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label11.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label11.Location = New System.Drawing.Point(63, 456)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Location = New System.Drawing.Point(45, 368)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(94, 18)
+        Me.Label11.Size = New System.Drawing.Size(75, 14)
         Me.Label11.TabIndex = 35
         Me.Label11.Text = "进程路径:"
         '
@@ -119,10 +121,9 @@ Partial Class SPYFORM
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label9.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label9.Location = New System.Drawing.Point(63, 384)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Location = New System.Drawing.Point(45, 310)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(94, 18)
+        Me.Label9.Size = New System.Drawing.Size(75, 14)
         Me.Label9.TabIndex = 33
         Me.Label9.Text = "窗体文本:"
         '
@@ -131,10 +132,9 @@ Partial Class SPYFORM
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label8.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label8.Location = New System.Drawing.Point(63, 311)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Location = New System.Drawing.Point(45, 252)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(94, 18)
+        Me.Label8.Size = New System.Drawing.Size(75, 14)
         Me.Label8.TabIndex = 36
         Me.Label8.Text = "窗体类名:"
         '
@@ -143,7 +143,8 @@ Partial Class SPYFORM
         Me.labelWinInfo.AutoSize = True
         Me.labelWinInfo.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.labelWinInfo.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.labelWinInfo.Location = New System.Drawing.Point(17, 54)
+        Me.labelWinInfo.Location = New System.Drawing.Point(15, 54)
+        Me.labelWinInfo.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.labelWinInfo.Name = "labelWinInfo"
         Me.labelWinInfo.Size = New System.Drawing.Size(105, 14)
         Me.labelWinInfo.TabIndex = 32
@@ -152,7 +153,8 @@ Partial Class SPYFORM
         'checkBoxTopmost
         '
         Me.checkBoxTopmost.AutoSize = True
-        Me.checkBoxTopmost.Location = New System.Drawing.Point(298, 14)
+        Me.checkBoxTopmost.Location = New System.Drawing.Point(330, 48)
+        Me.checkBoxTopmost.Margin = New System.Windows.Forms.Padding(2)
         Me.checkBoxTopmost.Name = "checkBoxTopmost"
         Me.checkBoxTopmost.Size = New System.Drawing.Size(48, 16)
         Me.checkBoxTopmost.TabIndex = 7
@@ -161,16 +163,18 @@ Partial Class SPYFORM
         '
         'textBoxPID
         '
-        Me.textBoxPID.Location = New System.Drawing.Point(126, 156)
+        Me.textBoxPID.Location = New System.Drawing.Point(130, 154)
+        Me.textBoxPID.Margin = New System.Windows.Forms.Padding(2)
         Me.textBoxPID.Name = "textBoxPID"
-        Me.textBoxPID.Size = New System.Drawing.Size(229, 21)
+        Me.textBoxPID.Size = New System.Drawing.Size(173, 21)
         Me.textBoxPID.TabIndex = 2
         '
         'textBoxHwnd
         '
-        Me.textBoxHwnd.Location = New System.Drawing.Point(126, 121)
+        Me.textBoxHwnd.Location = New System.Drawing.Point(130, 120)
+        Me.textBoxHwnd.Margin = New System.Windows.Forms.Padding(2)
         Me.textBoxHwnd.Name = "textBoxHwnd"
-        Me.textBoxHwnd.Size = New System.Drawing.Size(229, 21)
+        Me.textBoxHwnd.Size = New System.Drawing.Size(173, 21)
         Me.textBoxHwnd.TabIndex = 1
         '
         'Label3
@@ -178,10 +182,9 @@ Partial Class SPYFORM
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label3.Location = New System.Drawing.Point(71, 195)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(51, 159)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(86, 18)
+        Me.Label3.Size = New System.Drawing.Size(69, 14)
         Me.Label3.TabIndex = 25
         Me.Label3.Text = "窗体PID:"
         '
@@ -190,10 +193,9 @@ Partial Class SPYFORM
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label2.Location = New System.Drawing.Point(63, 151)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(44, 124)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(103, 18)
+        Me.Label2.Size = New System.Drawing.Size(82, 14)
         Me.Label2.TabIndex = 34
         Me.Label2.Text = "窗口句柄："
         '
@@ -202,7 +204,8 @@ Partial Class SPYFORM
         Me.labelMousePos.AutoSize = True
         Me.labelMousePos.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.labelMousePos.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.labelMousePos.Location = New System.Drawing.Point(17, 16)
+        Me.labelMousePos.Location = New System.Drawing.Point(15, 16)
+        Me.labelMousePos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.labelMousePos.Name = "labelMousePos"
         Me.labelMousePos.Size = New System.Drawing.Size(105, 14)
         Me.labelMousePos.TabIndex = 31
@@ -210,12 +213,14 @@ Partial Class SPYFORM
         '
         'checkBoxFreeMode
         '
+        Me.checkBoxFreeMode.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.checkBoxFreeMode.AutoSize = True
         Me.checkBoxFreeMode.Checked = True
         Me.checkBoxFreeMode.CheckState = System.Windows.Forms.CheckState.Checked
         Me.checkBoxFreeMode.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.checkBoxFreeMode.ForeColor = System.Drawing.Color.Salmon
-        Me.checkBoxFreeMode.Location = New System.Drawing.Point(221, 15)
+        Me.checkBoxFreeMode.Location = New System.Drawing.Point(244, 12)
+        Me.checkBoxFreeMode.Margin = New System.Windows.Forms.Padding(2)
         Me.checkBoxFreeMode.Name = "checkBoxFreeMode"
         Me.checkBoxFreeMode.Size = New System.Drawing.Size(76, 16)
         Me.checkBoxFreeMode.TabIndex = 0
@@ -227,10 +232,9 @@ Partial Class SPYFORM
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("微软雅黑", 7.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label4.Location = New System.Drawing.Point(285, 44)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Location = New System.Drawing.Point(232, 32)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(127, 19)
+        Me.Label4.Size = New System.Drawing.Size(97, 16)
         Me.Label4.TabIndex = 38
         Me.Label4.Text = "☆ 按 F3 切换模式 ☆"
         '
@@ -239,19 +243,19 @@ Partial Class SPYFORM
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label5.Location = New System.Drawing.Point(63, 239)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Location = New System.Drawing.Point(45, 194)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(94, 18)
+        Me.Label5.Size = New System.Drawing.Size(75, 14)
         Me.Label5.TabIndex = 36
         Me.Label5.Text = "窗体标题:"
         '
         'textBoxWinTitle
         '
-        Me.textBoxWinTitle.Location = New System.Drawing.Point(126, 191)
+        Me.textBoxWinTitle.Location = New System.Drawing.Point(130, 190)
+        Me.textBoxWinTitle.Margin = New System.Windows.Forms.Padding(2)
         Me.textBoxWinTitle.Multiline = True
         Me.textBoxWinTitle.Name = "textBoxWinTitle"
-        Me.textBoxWinTitle.Size = New System.Drawing.Size(229, 44)
+        Me.textBoxWinTitle.Size = New System.Drawing.Size(173, 36)
         Me.textBoxWinTitle.TabIndex = 3
         '
         'PicMenu1
@@ -259,28 +263,27 @@ Partial Class SPYFORM
         Me.PicMenu1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.PicMenu1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.发送关闭消息ToolStripMenuItem, Me.销毁进程ToolStripMenuItem})
         Me.PicMenu1.Name = "PicMenu1"
-        Me.PicMenu1.Size = New System.Drawing.Size(259, 52)
+        Me.PicMenu1.Size = New System.Drawing.Size(221, 48)
         '
         '发送关闭消息ToolStripMenuItem
         '
         Me.发送关闭消息ToolStripMenuItem.Name = "发送关闭消息ToolStripMenuItem"
-        Me.发送关闭消息ToolStripMenuItem.Size = New System.Drawing.Size(258, 24)
+        Me.发送关闭消息ToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.发送关闭消息ToolStripMenuItem.Text = "发送关闭消息"
         '
         '销毁进程ToolStripMenuItem
         '
         Me.销毁进程ToolStripMenuItem.Name = "销毁进程ToolStripMenuItem"
-        Me.销毁进程ToolStripMenuItem.Size = New System.Drawing.Size(258, 24)
+        Me.销毁进程ToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.销毁进程ToolStripMenuItem.Text = "直接销毁进程，不保存数据"
         '
         'PictureBox4
         '
         Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox4.Image = Global.SPY.My.Resources.Resources._set
-        Me.PictureBox4.Location = New System.Drawing.Point(475, 151)
-        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(4)
+        Me.PictureBox4.Location = New System.Drawing.Point(352, 118)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(27, 25)
+        Me.PictureBox4.Size = New System.Drawing.Size(20, 20)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox4.TabIndex = 42
         Me.PictureBox4.TabStop = False
@@ -290,10 +293,9 @@ Partial Class SPYFORM
         Me.PictureBox3.ContextMenuStrip = Me.PicMenu1
         Me.PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox3.Image = Global.SPY.My.Resources.Resources.b
-        Me.PictureBox3.Location = New System.Drawing.Point(475, 195)
-        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(4)
+        Me.PictureBox3.Location = New System.Drawing.Point(352, 152)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(27, 25)
+        Me.PictureBox3.Size = New System.Drawing.Size(20, 20)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox3.TabIndex = 41
         Me.PictureBox3.TabStop = False
@@ -302,20 +304,21 @@ Partial Class SPYFORM
         '
         Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox2.Image = Global.SPY.My.Resources.Resources.a1
-        Me.PictureBox2.Location = New System.Drawing.Point(475, 384)
-        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(4)
+        Me.PictureBox2.Location = New System.Drawing.Point(352, 304)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(27, 25)
+        Me.PictureBox2.Size = New System.Drawing.Size(20, 20)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 40
         Me.PictureBox2.TabStop = False
         '
         'PictureBoxMouseImage
         '
+        Me.PictureBoxMouseImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBoxMouseImage.Image = Global.SPY.My.Resources.Resources.drag
-        Me.PictureBoxMouseImage.Location = New System.Drawing.Point(346, 12)
+        Me.PictureBoxMouseImage.Location = New System.Drawing.Point(344, 11)
+        Me.PictureBoxMouseImage.Margin = New System.Windows.Forms.Padding(2)
         Me.PictureBoxMouseImage.Name = "PictureBoxMouseImage"
-        Me.PictureBoxMouseImage.Size = New System.Drawing.Size(37, 35)
+        Me.PictureBoxMouseImage.Size = New System.Drawing.Size(28, 28)
         Me.PictureBoxMouseImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PictureBoxMouseImage.TabIndex = 0
         Me.PictureBoxMouseImage.TabStop = False
@@ -324,7 +327,7 @@ Partial Class SPYFORM
         '
         Me.SetMenu1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.发送一次点击ToolStripMenuItem, Me.ToolStripSeparator3, Me.冻结窗体ToolStripMenuItem, Me.解冻窗体ToolStripMenuItem, Me.ToolStripSeparator1, Me.隐藏窗口ToolStripMenuItem, Me.显示窗口ToolStripMenuItem, Me.ToolStripSeparator2, Me.强制最小化ToolStripMenuItem, Me.强制最大化ToolStripMenuItem, Me.ToolStripSeparator4, Me.移动目标窗口ToolStripMenuItem, Me.改变目标窗口大小ToolStripMenuItem})
         Me.SetMenu1.Name = "SetMenu1"
-        Me.SetMenu1.Size = New System.Drawing.Size(173, 248)
+        Me.SetMenu1.Size = New System.Drawing.Size(173, 226)
         '
         '发送一次点击ToolStripMenuItem
         '
@@ -394,12 +397,19 @@ Partial Class SPYFORM
         Me.移动目标窗口ToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.移动目标窗口ToolStripMenuItem.Text = "移动目标窗口"
         '
+        '改变目标窗口大小ToolStripMenuItem
+        '
+        Me.改变目标窗口大小ToolStripMenuItem.Name = "改变目标窗口大小ToolStripMenuItem"
+        Me.改变目标窗口大小ToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.改变目标窗口大小ToolStripMenuItem.Text = "改变目标窗口大小"
+        '
         'labelColorValue
         '
         Me.labelColorValue.AutoSize = True
         Me.labelColorValue.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.labelColorValue.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.labelColorValue.Location = New System.Drawing.Point(76, 85)
+        Me.labelColorValue.Location = New System.Drawing.Point(75, 89)
+        Me.labelColorValue.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.labelColorValue.Name = "labelColorValue"
         Me.labelColorValue.Size = New System.Drawing.Size(45, 14)
         Me.labelColorValue.TabIndex = 32
@@ -407,7 +417,8 @@ Partial Class SPYFORM
         '
         'pictureBoxSnap
         '
-        Me.pictureBoxSnap.Location = New System.Drawing.Point(340, 69)
+        Me.pictureBoxSnap.Location = New System.Drawing.Point(331, 69)
+        Me.pictureBoxSnap.Margin = New System.Windows.Forms.Padding(2)
         Me.pictureBoxSnap.Name = "pictureBoxSnap"
         Me.pictureBoxSnap.Size = New System.Drawing.Size(40, 40)
         Me.pictureBoxSnap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -417,24 +428,17 @@ Partial Class SPYFORM
         'Label10
         '
         Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Location = New System.Drawing.Point(45, 102)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Location = New System.Drawing.Point(47, 86)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(27, 25)
+        Me.Label10.Size = New System.Drawing.Size(20, 20)
         Me.Label10.TabIndex = 44
-        '
-        '改变目标窗口大小ToolStripMenuItem
-        '
-        Me.改变目标窗口大小ToolStripMenuItem.Name = "改变目标窗口大小ToolStripMenuItem"
-        Me.改变目标窗口大小ToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
-        Me.改变目标窗口大小ToolStripMenuItem.Text = "改变目标窗口大小"
         '
         'SPYFORM
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(529, 529)
+        Me.ClientSize = New System.Drawing.Size(381, 423)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.pictureBoxSnap)
         Me.Controls.Add(Me.PictureBox4)
@@ -461,7 +465,6 @@ Partial Class SPYFORM
         Me.Controls.Add(Me.labelMousePos)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "SPYFORM"

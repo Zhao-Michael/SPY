@@ -122,8 +122,8 @@ Public Class SPYFORM
             End If
 
 
-            End If
             Threading.Thread.Sleep(50)
+
         Loop
 
     End Sub
@@ -153,6 +153,7 @@ Public Class SPYFORM
                 End If
 
             End If
+
         End If
         MyBase.WndProc(m)
     End Sub
@@ -199,7 +200,7 @@ Public Class SPYFORM
                                           While True
                                               Try
 
-                                                  If CheckBox2.Checked Then
+                                                  If checkBoxFreeMode.Checked Then
                                                       '该点颜色
 
                                                       Dim bit As Bitmap = New Bitmap(20, 20)
@@ -208,16 +209,13 @@ Public Class SPYFORM
                                                       g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
 
 
-                                                      PictureBox5.Image = bit
+                                                      pictureBoxSnap.Image = bit
 
 
                                                       Dim color = bit.GetPixel(10, 10)
 
 
-
-
-
-                                                      Label6.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
+                                                      labelColorValue.Text = "颜色: " + Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color)
 
                                                       Label10.BackColor = color
 
@@ -275,7 +273,7 @@ Public Class SPYFORM
 
 
     Private Sub 失去焦点(sender As Object, e As EventArgs) Handles MyBase.Deactivate
-        Me.BackColor = Color.FromArgb(235, 235, 235)
+        'Me.BackColor = Color.FromArgb(235, 235, 235)
     End Sub
 
     Private Sub 自由模式(sender As Object, e As EventArgs) Handles checkBoxFreeMode.CheckedChanged
@@ -416,13 +414,19 @@ Public Class SPYFORM
 
 #End Region
 
-    Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick
+    Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick, labelColorValue.Click
         If sender.Equals(Label2) Then My.Computer.Clipboard.SetText(textBoxHwnd.Text)
         If sender.Equals(Label3) Then My.Computer.Clipboard.SetText(textBoxPID.Text)
         If sender.Equals(Label5) Then My.Computer.Clipboard.SetText(textBoxWinTitle.Text)
         If sender.Equals(Label8) Then My.Computer.Clipboard.SetText(textBoxWinClass.Text)
         If sender.Equals(Label9) Then My.Computer.Clipboard.SetText(textBoxWinText.Text)
         If sender.Equals(Label11) Then My.Computer.Clipboard.SetText(textBoxEXEPath.Text)
+        If sender.Equals(labelColorValue) Then
+            If labelColorValue.Text.Contains("#") Then
+                My.Computer.Clipboard.SetText("#" + labelColorValue.Text.Split("#")(1))
+            End If
+
+        End If
     End Sub
 
     Private Sub 双击复制句柄(sender As Object, e As EventArgs) Handles Label2.MouseDoubleClick
