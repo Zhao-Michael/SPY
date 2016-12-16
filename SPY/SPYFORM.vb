@@ -437,9 +437,9 @@ Public Class SPYFORM
 
         e.Graphics.DrawRectangle(New Pen(Brushes.Green, 2), New Rectangle(1, 1, pictureBoxSnap.Size.Width - 2, pictureBoxSnap.Size.Height - 2))
 
-        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(2, 20), New Point(38, 20))
+        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(0, 13), New Point(40, 13))
 
-        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(20, 2), New Point(20, 38))
+        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(14, 0), New Point(14, 40))
 
     End Sub
 
