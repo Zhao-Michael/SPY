@@ -1,11 +1,16 @@
 ﻿Imports System.Drawing
 Imports System.Runtime.InteropServices
+Imports System.Collections.Concurrent
 
 Public Class SPYFORM
+
     Dim thread As New Threading.Thread(AddressOf check)
+
     Dim flag As Boolean = True  '线程是否运行
 
     Dim isdraw As Boolean = False
+
+    Dim queue As New BlockingCollection(Of Bitmap)
 
 
 #Region "移动窗体"
@@ -27,7 +32,6 @@ Public Class SPYFORM
         End If
     End Sub
 #End Region
-
 
 
     Private Sub 按下图片(sender As Object, e As MouseEventArgs) Handles PictureBoxMouseImage.MouseDown
@@ -141,6 +145,9 @@ Public Class SPYFORM
         End If
         If m.Msg = 274 Then
             If m.WParam = 1998 Then
+                Dim temp = checkBoxFreeMode.Checked
+
+                checkBoxFreeMode.Checked = False
 
                 Dim info = New SHELLEXECUTEINFO()
                 info.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(info)
@@ -149,7 +156,9 @@ Public Class SPYFORM
                 info.lpFile = Application.ExecutablePath
 
                 If ShellExecuteEx(info) Then
-                    Close()
+                    Environment.Exit(0)
+                Else
+                    checkBoxFreeMode.Checked = temp
                 End If
 
             End If
@@ -178,22 +187,9 @@ Public Class SPYFORM
 
         Dim dpiX = GetDeviceCaps(desktopDC, 90)
 
+        Dim bit As Bitmap = New Bitmap(20, 20)
 
-        '96 DPI = 100% scaling
-        '        120 DPI = 125% scaling
-        '        144 DPI = 150% scaling
-        '        192 DPI = 200% scaling
-
-        'If dpiX = 96 Then
-        '    m_dpi = 1
-        'ElseIf dpiX = 120 Then
-        '    m_dpi = 1.25
-        'ElseIf dpiX = 150 Then
-        '    m_dpi = 1.44
-        'ElseIf dpiX = 192 Then
-        '    m_dpi = 1.92
-        'End If
-
+        Dim g As Graphics = Graphics.FromImage(bit)
 
         Dim t As New Threading.Thread(Sub()
 
@@ -203,14 +199,9 @@ Public Class SPYFORM
                                                   If checkBoxFreeMode.Checked Then
                                                       '该点颜色
 
-                                                      Dim bit As Bitmap = New Bitmap(20, 20)
-                                                      Dim g As Graphics = Graphics.FromImage(bit)
-
                                                       g.CopyFromScreen(New Point((point.X - 10), (point.Y - 10)), New Point(0, 0), New Size(20, 20))
 
-
-                                                      pictureBoxSnap.Image = bit
-
+                                                      queue.Add(bit.Clone())
 
                                                       Dim color = bit.GetPixel(10, 10)
 
@@ -225,10 +216,26 @@ Public Class SPYFORM
                                               Catch ex As Exception
 
                                               End Try
+
+                                              Threading.Thread.Sleep(10)
+
                                           End While
 
                                       End Sub) With {.IsBackground = True}
         t.Start()
+
+
+        Dim q = New Threading.Thread(Sub()
+
+                                         For Each item In queue.GetConsumingEnumerable()
+                                             pictureBoxSnap.Image = item
+                                         Next
+
+                                     End Sub) With {.IsBackground = True}
+
+
+        q.Start()
+
 
         '初始化绘图的相关句柄
 
@@ -435,11 +442,13 @@ Public Class SPYFORM
 
     Private Sub PictureBox5_Paint(sender As Object, e As PaintEventArgs) Handles pictureBoxSnap.Paint
 
-        e.Graphics.DrawRectangle(New Pen(Brushes.Green, 2), New Rectangle(1, 1, pictureBoxSnap.Size.Width - 2, pictureBoxSnap.Size.Height - 2))
+        Dim rect = New Rectangle(1, 1, pictureBoxSnap.Size.Width - 2, pictureBoxSnap.Size.Height - 2)
 
-        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(0, 13), New Point(40, 13))
+        e.Graphics.DrawRectangle(New Pen(Brushes.Green, 2), rect)
 
-        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(14, 0), New Point(14, 40))
+        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(0, rect.Height / 2), New Point(rect.Width, rect.Height / 2))
+
+        e.Graphics.DrawLine(New Pen(Brushes.Red, 1), New Point(rect.Width / 2, 0), New Point(rect.Width / 2, rect.Height))
 
     End Sub
 
@@ -463,7 +472,7 @@ Public Class SPYFORM
 
     Private Sub 移动目标窗口ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 移动目标窗口ToolStripMenuItem.Click
 
-        Dim r = InputBox("请输入目标窗口的位置，以逗号分隔"， "移动目标窗口", "100,100")
+        Dim r = InputBox("请输入目标窗口的位置，以逗号分隔", "移动目标窗口", "100,100")
 
         If r.Contains(",") AndAlso Split(r.ToArray(), ",").Length = 2 Then
 
@@ -480,7 +489,7 @@ Public Class SPYFORM
     End Sub
     Private Sub 改变目标窗口大小ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 改变目标窗口大小ToolStripMenuItem.Click
 
-        Dim r = InputBox("请输入目标窗口的大小，以逗号分隔"， "改变目标窗口大小", (currPosition.Width - currPosition.X).ToString() + " , " + (currPosition.Height - currPosition.Y).ToString())
+        Dim r = InputBox("请输入目标窗口的大小，以逗号分隔", "改变目标窗口大小", (currPosition.Width - currPosition.X).ToString() + " , " + (currPosition.Height - currPosition.Y).ToString())
 
         If r = "" Then Return
 
