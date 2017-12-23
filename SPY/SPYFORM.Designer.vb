@@ -82,15 +82,15 @@ Partial Class SPYFORM
         Me.textBoxWinText.Location = New System.Drawing.Point(195, 454)
         Me.textBoxWinText.Multiline = True
         Me.textBoxWinText.Name = "textBoxWinText"
-        Me.textBoxWinText.Size = New System.Drawing.Size(258, 52)
+        Me.textBoxWinText.Size = New System.Drawing.Size(294, 52)
         Me.textBoxWinText.TabIndex = 5
         '
         'textBoxEXEPath
         '
-        Me.textBoxEXEPath.Location = New System.Drawing.Point(195, 538)
+        Me.textBoxEXEPath.Location = New System.Drawing.Point(195, 528)
         Me.textBoxEXEPath.Multiline = True
         Me.textBoxEXEPath.Name = "textBoxEXEPath"
-        Me.textBoxEXEPath.Size = New System.Drawing.Size(258, 52)
+        Me.textBoxEXEPath.Size = New System.Drawing.Size(294, 90)
         Me.textBoxEXEPath.TabIndex = 6
         '
         'textBoxWinClass
@@ -98,7 +98,7 @@ Partial Class SPYFORM
         Me.textBoxWinClass.Location = New System.Drawing.Point(195, 372)
         Me.textBoxWinClass.Multiline = True
         Me.textBoxWinClass.Name = "textBoxWinClass"
-        Me.textBoxWinClass.Size = New System.Drawing.Size(258, 52)
+        Me.textBoxWinClass.Size = New System.Drawing.Size(294, 52)
         Me.textBoxWinClass.TabIndex = 4
         '
         'Label11
@@ -107,7 +107,7 @@ Partial Class SPYFORM
         Me.Label11.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label11.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label11.Location = New System.Drawing.Point(68, 552)
+        Me.Label11.Location = New System.Drawing.Point(68, 531)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(120, 21)
@@ -164,14 +164,14 @@ Partial Class SPYFORM
         '
         Me.textBoxPID.Location = New System.Drawing.Point(195, 231)
         Me.textBoxPID.Name = "textBoxPID"
-        Me.textBoxPID.Size = New System.Drawing.Size(258, 28)
+        Me.textBoxPID.Size = New System.Drawing.Size(294, 28)
         Me.textBoxPID.TabIndex = 2
         '
         'textBoxHwnd
         '
         Me.textBoxHwnd.Location = New System.Drawing.Point(195, 180)
         Me.textBoxHwnd.Name = "textBoxHwnd"
-        Me.textBoxHwnd.Size = New System.Drawing.Size(258, 28)
+        Me.textBoxHwnd.Size = New System.Drawing.Size(294, 28)
         Me.textBoxHwnd.TabIndex = 1
         '
         'Label3
@@ -253,7 +253,7 @@ Partial Class SPYFORM
         Me.textBoxWinTitle.Location = New System.Drawing.Point(195, 285)
         Me.textBoxWinTitle.Multiline = True
         Me.textBoxWinTitle.Name = "textBoxWinTitle"
-        Me.textBoxWinTitle.Size = New System.Drawing.Size(258, 52)
+        Me.textBoxWinTitle.Size = New System.Drawing.Size(294, 52)
         Me.textBoxWinTitle.TabIndex = 3
         '
         'PicMenu1

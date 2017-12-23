@@ -53,8 +53,7 @@ Public Class SPYFORM
             flag = False
             checkBoxFreeMode.Checked = flag
             isdraw = False
-            SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0)
-
+            'SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, 0, 0)
         End If
 
     End Sub
