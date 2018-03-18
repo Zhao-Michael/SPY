@@ -260,7 +260,7 @@ Public Class SPYFORM
         RemoveMenu(handle, 2, MenuFlags.MF_BYPOSITION)
         RemoveMenu(handle, 3, MenuFlags.MF_BYPOSITION)
 
-        AppendMenuA(handle, MenuFlags.MF_STRING, 1998, "管理员")
+        AppendMenuA(handle, MenuFlags.MF_STRING, 1998, "Run as Admin")
     End Sub
 #End Region
 
