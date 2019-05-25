@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  一个强类型的资源类，用于查找本地化的字符串等。
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -47,7 +47,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  使用此强类型资源类，为所有资源查找
+        '''  重写当前线程的 CurrentUICulture 属性
         '''  重写当前线程的 CurrentUICulture 属性。
         '''</summary>
         <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
@@ -73,19 +73,9 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
-        Friend ReadOnly Property a1() As System.Drawing.Bitmap
+        Friend ReadOnly Property close() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("a1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
-        '''</summary>
-        Friend ReadOnly Property b() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("b", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("close", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -116,6 +106,16 @@ Namespace My.Resources
         Friend ReadOnly Property drag2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("drag2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property writetext() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("writetext", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

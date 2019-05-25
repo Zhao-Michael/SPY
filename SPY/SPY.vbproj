@@ -48,7 +48,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>20.ico</ApplicationIcon>
+    <ApplicationIcon>home.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
@@ -97,23 +97,29 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="spyapi.vb" />
-    <Compile Include="SPYFORM.vb">
+    <Compile Include="MessageHandle.Designer.vb">
+      <DependentUpon>MessageHandle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MessageHandle.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SPYFORM.Designer.vb">
-      <DependentUpon>SPYFORM.vb</DependentUpon>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SpyAPI.vb" />
+    <Compile Include="SpyForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpyForm.Designer.vb">
+      <DependentUpon>SpyForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -122,14 +128,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SPYFORM.resx">
-      <DependentUpon>SPYFORM.vb</DependentUpon>
+    <EmbeddedResource Include="MessageHandle.resx">
+      <DependentUpon>MessageHandle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpyForm.resx">
+      <DependentUpon>SpyForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -152,11 +161,11 @@
     <None Include="Resources\drag2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="20.ico" />
+    <Content Include="home.ico" />
     <Content Include="Resources\cross.png" />
     <None Include="Resources\set.png" />
-    <None Include="Resources\b.png" />
-    <None Include="Resources\a1.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\writetext.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

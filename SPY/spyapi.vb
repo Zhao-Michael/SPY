@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 
-Module spyapi
+Module SpyAPI
     '通用API===============================================================================
     '获取错误信息
     Public Declare Function GetLastError Lib "kernel32" Alias "GetLastError" () As Integer

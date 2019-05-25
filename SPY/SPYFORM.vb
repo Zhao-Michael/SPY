@@ -2,7 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Collections.Concurrent
 
-Public Class SPYFORM
+Public Class SpyForm
 
     Dim thread As New Threading.Thread(AddressOf check)
 
@@ -11,6 +11,10 @@ Public Class SPYFORM
     Dim isdraw As Boolean = False
 
     Dim queue As New BlockingCollection(Of Bitmap)
+
+    Public Shared Intance As SpyForm
+
+    Public Event HwndChanged()
 
 
 #Region "移动窗体"
@@ -167,7 +171,7 @@ Public Class SPYFORM
     End Sub
 
     Private Sub SPYFORM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Intance = Me
 
         setsysmenu()
 
@@ -287,7 +291,7 @@ Public Class SPYFORM
         If checkBoxFreeMode.Checked = True Then
             PictureBox2.Image = Nothing
         Else
-            PictureBox2.Image = My.Resources.a1
+            PictureBox2.Image = My.Resources.writetext
         End If
     End Sub
 
@@ -301,7 +305,7 @@ Public Class SPYFORM
     '1=================================================================================
     Private Sub PictureBox1_MouseHover(sender As Object, e As EventArgs) Handles PictureBoxMouseImage.MouseHover
         ToolTip3.Active = True
-        ToolTip3.Show("请左击图标拖动需要查看的窗体", PictureBoxMouseImage, 40, 0, 1200)
+        ToolTip3.Show("请左击图标拖动需要查看的窗体", PictureBoxMouseImage, 40, 0)
     End Sub
     Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBoxMouseImage.MouseLeave
         ToolTip3.Active = False
@@ -346,19 +350,22 @@ Public Class SPYFORM
     Private Sub 强制最大化ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 强制最大化ToolStripMenuItem.Click
         ShowWindow(textBoxHwnd.Text, WindowShowStyle.Maximize)
     End Sub
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles textBoxHwnd.TextChanged
+    Private Sub TextBoxHwnd_TextChanged(sender As Object, e As EventArgs) Handles textBoxHwnd.TextChanged
         If Val(textBoxHwnd.Text) Mod 2 <> 0 Or textBoxHwnd.Text = "0" Or textBoxHwnd.Text = Nothing Then
             PictureBox4.Image = Nothing
             PictureBox2.Image = Nothing
         Else
-            PictureBox2.Image = My.Resources.a1
+            PictureBox2.Image = My.Resources.writetext
         End If
-
+        Dim hex = 0
+        Integer.TryParse(textBoxHwnd.Text, hex)
+        Label16Decimal.Text = Convert.ToString(hex, 16)
+        RaiseEvent HwndChanged()
     End Sub
     Private Sub PictureBox4_MouseHover(sender As Object, e As EventArgs) Handles PictureBox4.MouseEnter
         ToolTip1.Active = True
         ToolTip1.ShowAlways = True
-        ToolTip1.Show("注意，窗口包括窗体,也包括其它控件!", PictureBox4, PictureBox4.Width + 5, -22)
+        ToolTip1.Show("操作窗口", PictureBox4, PictureBox4.Width + 10, 0)
     End Sub
     Private Sub PictureBox4_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox4.MouseLeave
         ToolTip1.Active = False
@@ -367,7 +374,7 @@ Public Class SPYFORM
     Private Sub PictureBox3_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox3.MouseEnter
         ToolTip1.Active = True
         ToolTip1.ShowAlways = True
-        ToolTip1.Show("关闭该进程 PID.Kill!", PictureBox3, PictureBox3.Width + 5, -22)
+        ToolTip1.Show("关闭进程", PictureBox3, PictureBox3.Width + 11, 0)
     End Sub
 
     Private Sub PictureBox3_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox3.MouseLeave
@@ -377,7 +384,7 @@ Public Class SPYFORM
         If Val(textBoxPID.Text) Mod 2 <> 0 Or textBoxPID.Text = "0" Or textBoxPID.Text = Nothing Then
             PictureBox3.Image = Nothing
         Else
-            PictureBox3.Image = My.Resources.b
+            PictureBox3.Image = My.Resources.close
         End If
     End Sub
 
@@ -398,7 +405,7 @@ Public Class SPYFORM
     Private Sub PictureBox2_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox2.MouseEnter
         ToolTip2.Active = True
         ToolTip2.ShowAlways = True
-        ToolTip2.Show("修改窗口文本！" + vbCrLf + "一般来说，只能修改窗口标题和文本框！", PictureBox2, 25, -40)
+        ToolTip2.Show("修改窗口文本", PictureBox2, 30, 0)
     End Sub
 
     Private Sub PictureBox2_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox2.MouseLeave
@@ -420,13 +427,14 @@ Public Class SPYFORM
 
 #End Region
 
-    Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick, labelColorValue.Click
+    Private Sub 双击复制(sender As Object, e As EventArgs) Handles Label2.DoubleClick, Label3.DoubleClick, Label5.DoubleClick, Label8.DoubleClick, Label9.DoubleClick, Label11.DoubleClick, labelColorValue.Click, Label16Decimal.DoubleClick, Label12.DoubleClick
         If sender.Equals(Label2) Then My.Computer.Clipboard.SetText(textBoxHwnd.Text)
         If sender.Equals(Label3) Then My.Computer.Clipboard.SetText(textBoxPID.Text)
         If sender.Equals(Label5) Then My.Computer.Clipboard.SetText(textBoxWinTitle.Text)
         If sender.Equals(Label8) Then My.Computer.Clipboard.SetText(textBoxWinClass.Text)
         If sender.Equals(Label9) Then My.Computer.Clipboard.SetText(textBoxWinText.Text)
         If sender.Equals(Label11) Then My.Computer.Clipboard.SetText(textBoxEXEPath.Text)
+        If sender.Equals(Label12) Or sender.Equals(Label16Decimal) Then My.Computer.Clipboard.SetText(Label16Decimal.Text)
         If sender.Equals(labelColorValue) Then
             If labelColorValue.Text.Contains("#") Then
                 My.Computer.Clipboard.SetText("#" + labelColorValue.Text.Split("#")(1))
@@ -529,7 +537,10 @@ Public Class SPYFORM
     Declare Sub SHChangeNotify Lib "shell32.dll" (ByVal wEventId As Integer, ByVal uFlags As Integer, dwItem1 As Integer, dwItem2 As Integer)
     Const SHCNE_ASSOCCHANGED = &H8000000&
 
-
+    Private Sub 消息控制对话框ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 消息控制对话框ToolStripMenuItem.Click
+        Dim mhDialog = New MessageHandle()
+        mhDialog.Show()
+    End Sub
 
     Const SHCNF_IDLIST = &H0
 
