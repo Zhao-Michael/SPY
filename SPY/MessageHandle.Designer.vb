@@ -41,9 +41,9 @@ Partial Class MessageHandle
         '
         'LabelHwnd
         '
-        Me.LabelHwnd.AutoSize = true
-        Me.LabelHwnd.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134,Byte))
-        Me.LabelHwnd.Location = New System.Drawing.Point(31, 18)
+        Me.LabelHwnd.AutoSize = True
+        Me.LabelHwnd.Font = New System.Drawing.Font("Microsoft YaHei", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LabelHwnd.Location = New System.Drawing.Point(31, 20)
         Me.LabelHwnd.Name = "LabelHwnd"
         Me.LabelHwnd.Size = New System.Drawing.Size(65, 19)
         Me.LabelHwnd.TabIndex = 0
@@ -51,17 +51,17 @@ Partial Class MessageHandle
         '
         'TextBoxHwnd
         '
-        Me.TextBoxHwnd.Font = New System.Drawing.Font("宋体", 10!)
-        Me.TextBoxHwnd.Location = New System.Drawing.Point(19, 48)
+        Me.TextBoxHwnd.Font = New System.Drawing.Font("SimSun", 10.0!)
+        Me.TextBoxHwnd.Location = New System.Drawing.Point(19, 52)
         Me.TextBoxHwnd.Name = "TextBoxHwnd"
         Me.TextBoxHwnd.Size = New System.Drawing.Size(86, 23)
         Me.TextBoxHwnd.TabIndex = 1
         '
         'LabelMsgID
         '
-        Me.LabelMsgID.AutoSize = true
-        Me.LabelMsgID.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134,Byte))
-        Me.LabelMsgID.Location = New System.Drawing.Point(149, 18)
+        Me.LabelMsgID.AutoSize = True
+        Me.LabelMsgID.Font = New System.Drawing.Font("Microsoft YaHei", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LabelMsgID.Location = New System.Drawing.Point(149, 20)
         Me.LabelMsgID.Name = "LabelMsgID"
         Me.LabelMsgID.Size = New System.Drawing.Size(57, 19)
         Me.LabelMsgID.TabIndex = 0
@@ -69,17 +69,17 @@ Partial Class MessageHandle
         '
         'TextBoxMsgID
         '
-        Me.TextBoxMsgID.Font = New System.Drawing.Font("宋体", 10!)
-        Me.TextBoxMsgID.Location = New System.Drawing.Point(136, 48)
+        Me.TextBoxMsgID.Font = New System.Drawing.Font("SimSun", 10.0!)
+        Me.TextBoxMsgID.Location = New System.Drawing.Point(136, 52)
         Me.TextBoxMsgID.Name = "TextBoxMsgID"
         Me.TextBoxMsgID.Size = New System.Drawing.Size(86, 23)
         Me.TextBoxMsgID.TabIndex = 1
         '
         'LabelWP
         '
-        Me.LabelWP.AutoSize = true
-        Me.LabelWP.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134,Byte))
-        Me.LabelWP.Location = New System.Drawing.Point(266, 18)
+        Me.LabelWP.AutoSize = True
+        Me.LabelWP.Font = New System.Drawing.Font("Microsoft YaHei", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LabelWP.Location = New System.Drawing.Point(266, 20)
         Me.LabelWP.Name = "LabelWP"
         Me.LabelWP.Size = New System.Drawing.Size(66, 19)
         Me.LabelWP.TabIndex = 0
@@ -87,8 +87,8 @@ Partial Class MessageHandle
         '
         'TextBoxLP
         '
-        Me.TextBoxLP.Font = New System.Drawing.Font("宋体", 10!)
-        Me.TextBoxLP.Location = New System.Drawing.Point(254, 48)
+        Me.TextBoxLP.Font = New System.Drawing.Font("SimSun", 10.0!)
+        Me.TextBoxLP.Location = New System.Drawing.Point(254, 52)
         Me.TextBoxLP.Name = "TextBoxLP"
         Me.TextBoxLP.Size = New System.Drawing.Size(86, 23)
         Me.TextBoxLP.TabIndex = 1
@@ -96,9 +96,9 @@ Partial Class MessageHandle
         '
         'LabelLP
         '
-        Me.LabelLP.AutoSize = true
-        Me.LabelLP.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134,Byte))
-        Me.LabelLP.Location = New System.Drawing.Point(379, 18)
+        Me.LabelLP.AutoSize = True
+        Me.LabelLP.Font = New System.Drawing.Font("Microsoft YaHei", 10.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LabelLP.Location = New System.Drawing.Point(379, 20)
         Me.LabelLP.Name = "LabelLP"
         Me.LabelLP.Size = New System.Drawing.Size(58, 19)
         Me.LabelLP.TabIndex = 0
@@ -106,8 +106,8 @@ Partial Class MessageHandle
         '
         'TextBoxWP
         '
-        Me.TextBoxWP.Font = New System.Drawing.Font("宋体", 10!)
-        Me.TextBoxWP.Location = New System.Drawing.Point(368, 48)
+        Me.TextBoxWP.Font = New System.Drawing.Font("SimSun", 10.0!)
+        Me.TextBoxWP.Location = New System.Drawing.Point(368, 52)
         Me.TextBoxWP.Name = "TextBoxWP"
         Me.TextBoxWP.Size = New System.Drawing.Size(86, 23)
         Me.TextBoxWP.TabIndex = 1
@@ -115,64 +115,64 @@ Partial Class MessageHandle
         '
         'ButtonSend
         '
-        Me.ButtonSend.Font = New System.Drawing.Font("微软雅黑", 9!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134,Byte))
-        Me.ButtonSend.Location = New System.Drawing.Point(343, 107)
+        Me.ButtonSend.Font = New System.Drawing.Font("Microsoft YaHei", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.ButtonSend.Location = New System.Drawing.Point(343, 116)
         Me.ButtonSend.Name = "ButtonSend"
-        Me.ButtonSend.Size = New System.Drawing.Size(119, 30)
+        Me.ButtonSend.Size = New System.Drawing.Size(119, 33)
         Me.ButtonSend.TabIndex = 2
         Me.ButtonSend.Text = "发送消息"
-        Me.ButtonSend.UseVisualStyleBackColor = true
+        Me.ButtonSend.UseVisualStyleBackColor = True
         '
         'CheckBoxAutoSync
         '
-        Me.CheckBoxAutoSync.AutoSize = true
-        Me.CheckBoxAutoSync.Checked = true
+        Me.CheckBoxAutoSync.AutoSize = True
+        Me.CheckBoxAutoSync.Checked = True
         Me.CheckBoxAutoSync.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBoxAutoSync.Location = New System.Drawing.Point(19, 116)
+        Me.CheckBoxAutoSync.Location = New System.Drawing.Point(19, 126)
         Me.CheckBoxAutoSync.Name = "CheckBoxAutoSync"
-        Me.CheckBoxAutoSync.Size = New System.Drawing.Size(96, 16)
+        Me.CheckBoxAutoSync.Size = New System.Drawing.Size(98, 17)
         Me.CheckBoxAutoSync.TabIndex = 3
         Me.CheckBoxAutoSync.Text = "自动同步句柄"
-        Me.CheckBoxAutoSync.UseVisualStyleBackColor = true
+        Me.CheckBoxAutoSync.UseVisualStyleBackColor = True
         '
         'LabelHwnd16
         '
-        Me.LabelHwnd16.AutoSize = true
-        Me.LabelHwnd16.Location = New System.Drawing.Point(24, 83)
+        Me.LabelHwnd16.AutoSize = True
+        Me.LabelHwnd16.Location = New System.Drawing.Point(24, 90)
         Me.LabelHwnd16.Name = "LabelHwnd16"
-        Me.LabelHwnd16.Size = New System.Drawing.Size(0, 12)
+        Me.LabelHwnd16.Size = New System.Drawing.Size(0, 13)
         Me.LabelHwnd16.TabIndex = 4
         '
         'LabelMsg16
         '
-        Me.LabelMsg16.AutoSize = true
-        Me.LabelMsg16.Location = New System.Drawing.Point(139, 83)
+        Me.LabelMsg16.AutoSize = True
+        Me.LabelMsg16.Location = New System.Drawing.Point(139, 90)
         Me.LabelMsg16.Name = "LabelMsg16"
-        Me.LabelMsg16.Size = New System.Drawing.Size(0, 12)
+        Me.LabelMsg16.Size = New System.Drawing.Size(0, 13)
         Me.LabelMsg16.TabIndex = 4
         '
         'LabelWP16
         '
-        Me.LabelWP16.AutoSize = true
-        Me.LabelWP16.Location = New System.Drawing.Point(257, 83)
+        Me.LabelWP16.AutoSize = True
+        Me.LabelWP16.Location = New System.Drawing.Point(257, 90)
         Me.LabelWP16.Name = "LabelWP16"
-        Me.LabelWP16.Size = New System.Drawing.Size(0, 12)
+        Me.LabelWP16.Size = New System.Drawing.Size(0, 13)
         Me.LabelWP16.TabIndex = 4
         '
         'LabelLP16
         '
-        Me.LabelLP16.AutoSize = true
-        Me.LabelLP16.Location = New System.Drawing.Point(371, 83)
+        Me.LabelLP16.AutoSize = True
+        Me.LabelLP16.Location = New System.Drawing.Point(371, 90)
         Me.LabelLP16.Name = "LabelLP16"
-        Me.LabelLP16.Size = New System.Drawing.Size(0, 12)
+        Me.LabelLP16.Size = New System.Drawing.Size(0, 13)
         Me.LabelLP16.TabIndex = 4
         '
         'MessageHandle
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 12!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ClientSize = New System.Drawing.Size(473, 149)
+        Me.ClientSize = New System.Drawing.Size(473, 161)
         Me.Controls.Add(Me.LabelLP16)
         Me.Controls.Add(Me.LabelWP16)
         Me.Controls.Add(Me.LabelMsg16)
