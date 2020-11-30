@@ -112,7 +112,17 @@ namespace SPY
             try
             {
                 labelResult.ResetText();
-                long result = SpyAPI.SendMessage(Conversions.ToInteger(TextBoxHwnd.Text), Conversions.ToInteger(TextBoxMsgID.Text), Conversions.ToInteger(TextBoxLP.Text), Conversions.ToInteger(TextBoxWP.Text));
+                var hwnd = 0;
+                if (msgMapping.ContainsKey(_TextBoxMsgID.Text))
+                {
+                    hwnd = msgMapping[_TextBoxMsgID.Text];
+                }
+                else
+                {
+                    hwnd = Conversions.ToInteger(TextBoxMsgID.Text);
+                }
+
+                long result = SpyAPI.SendMessage(Conversions.ToInteger(TextBoxHwnd.Text), hwnd, Conversions.ToInteger(TextBoxLP.Text), Conversions.ToInteger(TextBoxWP.Text));
                 labelResult.Text = "Result:  " + result + "  ( 0x" + Convert.ToString(result, 16) + " )";
             }
             catch (Exception ex)
