@@ -11,7 +11,7 @@
     <AssemblyName>SPY</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
     <LangVersion>latest</LangVersion>
@@ -36,6 +36,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>bin\Release\SPY.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -63,6 +64,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DefineTrace>true</DefineTrace>
@@ -73,6 +75,7 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -100,6 +103,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HexConvert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HexConvert.Designer.cs">
+      <DependentUpon>HexConvert.cs</DependentUpon>
+    </Compile>
     <Compile Include="My Project\MyNamespace.Dynamic.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.1.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.2.Designer.cs" />
@@ -135,6 +144,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HexConvert.resx">
+      <DependentUpon>HexConvert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageHandle.resx">
       <DependentUpon>MessageHandle.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="home.ico" />
+    <Content Include="Resources\convert.png" />
+    <Content Include="Resources\copy.png" />
     <Content Include="Resources\cross.png" />
     <EmbeddedResource Include="Resources\setting.png" />
     <EmbeddedResource Include="Resources\close.png" />

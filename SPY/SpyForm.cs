@@ -600,6 +600,11 @@ namespace SPY
 
         MessageHandle mhDialog = new MessageHandle();
 
+        private void pictureBoxConvert_Click(object sender, EventArgs e)
+        {
+            new HexConvert().Show();
+        }
+
         private const int SHCNF_IDLIST = 0x0;
     }
 }

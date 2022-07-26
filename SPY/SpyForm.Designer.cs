@@ -81,54 +81,56 @@ namespace SPY
             this.Label10 = new System.Windows.Forms.Label();
             this._Label12 = new System.Windows.Forms.Label();
             this._Label16Decimal = new System.Windows.Forms.Label();
+            this.pictureBoxConvert = new System.Windows.Forms.PictureBox();
+            this._PictureBox3 = new System.Windows.Forms.PictureBox();
             this._pictureBoxSnap = new System.Windows.Forms.PictureBox();
             this._PictureBox4 = new System.Windows.Forms.PictureBox();
             this._PictureBox2 = new System.Windows.Forms.PictureBox();
             this._PictureBoxMouseImage = new System.Windows.Forms.PictureBox();
-            this._PictureBox3 = new System.Windows.Forms.PictureBox();
             this.PicMenu1.SuspendLayout();
             this.SetMenu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConvert)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._PictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxSnap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBoxMouseImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._PictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxWinText
             // 
-            this.textBoxWinText.Location = new System.Drawing.Point(130, 329);
+            this.textBoxWinText.Location = new System.Drawing.Point(130, 304);
             this.textBoxWinText.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWinText.Multiline = true;
             this.textBoxWinText.Name = "textBoxWinText";
-            this.textBoxWinText.Size = new System.Drawing.Size(197, 39);
+            this.textBoxWinText.Size = new System.Drawing.Size(197, 36);
             this.textBoxWinText.TabIndex = 5;
             // 
             // textBoxEXEPath
             // 
-            this.textBoxEXEPath.Location = new System.Drawing.Point(130, 381);
+            this.textBoxEXEPath.Location = new System.Drawing.Point(130, 352);
             this.textBoxEXEPath.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxEXEPath.Multiline = true;
             this.textBoxEXEPath.Name = "textBoxEXEPath";
-            this.textBoxEXEPath.Size = new System.Drawing.Size(197, 66);
+            this.textBoxEXEPath.Size = new System.Drawing.Size(197, 61);
             this.textBoxEXEPath.TabIndex = 6;
             // 
             // textBoxWinClass
             // 
-            this.textBoxWinClass.Location = new System.Drawing.Point(130, 277);
+            this.textBoxWinClass.Location = new System.Drawing.Point(130, 256);
             this.textBoxWinClass.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWinClass.Multiline = true;
             this.textBoxWinClass.Name = "textBoxWinClass";
-            this.textBoxWinClass.Size = new System.Drawing.Size(197, 39);
+            this.textBoxWinClass.Size = new System.Drawing.Size(197, 36);
             this.textBoxWinClass.TabIndex = 4;
             // 
             // _Label11
             // 
             this._Label11.AutoSize = true;
             this._Label11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._Label11.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label11.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label11.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label11.Location = new System.Drawing.Point(45, 384);
+            this._Label11.Location = new System.Drawing.Point(45, 354);
             this._Label11.Name = "_Label11";
             this._Label11.Size = new System.Drawing.Size(82, 14);
             this._Label11.TabIndex = 35;
@@ -139,9 +141,9 @@ namespace SPY
             // _Label9
             // 
             this._Label9.AutoSize = true;
-            this._Label9.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label9.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label9.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label9.Location = new System.Drawing.Point(45, 337);
+            this._Label9.Location = new System.Drawing.Point(45, 311);
             this._Label9.Name = "_Label9";
             this._Label9.Size = new System.Drawing.Size(82, 14);
             this._Label9.TabIndex = 33;
@@ -151,9 +153,9 @@ namespace SPY
             // _Label8
             // 
             this._Label8.AutoSize = true;
-            this._Label8.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label8.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label8.Location = new System.Drawing.Point(45, 282);
+            this._Label8.Location = new System.Drawing.Point(45, 260);
             this._Label8.Name = "_Label8";
             this._Label8.Size = new System.Drawing.Size(82, 14);
             this._Label8.TabIndex = 36;
@@ -163,9 +165,9 @@ namespace SPY
             // labelWinInfo
             // 
             this.labelWinInfo.AutoSize = true;
-            this.labelWinInfo.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelWinInfo.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelWinInfo.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.labelWinInfo.Location = new System.Drawing.Point(15, 55);
+            this.labelWinInfo.Location = new System.Drawing.Point(15, 51);
             this.labelWinInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelWinInfo.Name = "labelWinInfo";
             this.labelWinInfo.Size = new System.Drawing.Size(105, 14);
@@ -176,10 +178,10 @@ namespace SPY
             // 
             this._checkBoxTopmost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._checkBoxTopmost.AutoSize = true;
-            this._checkBoxTopmost.Location = new System.Drawing.Point(16, 430);
+            this._checkBoxTopmost.Location = new System.Drawing.Point(18, 397);
             this._checkBoxTopmost.Margin = new System.Windows.Forms.Padding(2);
             this._checkBoxTopmost.Name = "_checkBoxTopmost";
-            this._checkBoxTopmost.Size = new System.Drawing.Size(74, 17);
+            this._checkBoxTopmost.Size = new System.Drawing.Size(72, 16);
             this._checkBoxTopmost.TabIndex = 7;
             this._checkBoxTopmost.Text = "置顶窗口";
             this._checkBoxTopmost.UseVisualStyleBackColor = true;
@@ -187,28 +189,28 @@ namespace SPY
             // 
             // _textBoxPID
             // 
-            this._textBoxPID.Location = new System.Drawing.Point(130, 190);
+            this._textBoxPID.Location = new System.Drawing.Point(130, 175);
             this._textBoxPID.Margin = new System.Windows.Forms.Padding(2);
             this._textBoxPID.Name = "_textBoxPID";
-            this._textBoxPID.Size = new System.Drawing.Size(197, 20);
+            this._textBoxPID.Size = new System.Drawing.Size(197, 21);
             this._textBoxPID.TabIndex = 2;
             this._textBoxPID.TextChanged += new System.EventHandler(this.PID改变);
             // 
             // _textBoxHwnd
             // 
-            this._textBoxHwnd.Location = new System.Drawing.Point(130, 128);
+            this._textBoxHwnd.Location = new System.Drawing.Point(130, 118);
             this._textBoxHwnd.Margin = new System.Windows.Forms.Padding(2);
             this._textBoxHwnd.Name = "_textBoxHwnd";
-            this._textBoxHwnd.Size = new System.Drawing.Size(197, 20);
+            this._textBoxHwnd.Size = new System.Drawing.Size(197, 21);
             this._textBoxHwnd.TabIndex = 1;
             this._textBoxHwnd.TextChanged += new System.EventHandler(this.TextBoxHwnd_TextChanged);
             // 
             // _Label3
             // 
             this._Label3.AutoSize = true;
-            this._Label3.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label3.Location = new System.Drawing.Point(51, 192);
+            this._Label3.Location = new System.Drawing.Point(51, 177);
             this._Label3.Name = "_Label3";
             this._Label3.Size = new System.Drawing.Size(76, 14);
             this._Label3.TabIndex = 25;
@@ -218,9 +220,9 @@ namespace SPY
             // _Label2
             // 
             this._Label2.AutoSize = true;
-            this._Label2.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label2.Location = new System.Drawing.Point(44, 131);
+            this._Label2.Location = new System.Drawing.Point(44, 121);
             this._Label2.Name = "_Label2";
             this._Label2.Size = new System.Drawing.Size(82, 14);
             this._Label2.TabIndex = 34;
@@ -231,9 +233,9 @@ namespace SPY
             // labelMousePos
             // 
             this.labelMousePos.AutoSize = true;
-            this.labelMousePos.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelMousePos.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelMousePos.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.labelMousePos.Location = new System.Drawing.Point(15, 14);
+            this.labelMousePos.Location = new System.Drawing.Point(15, 13);
             this.labelMousePos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMousePos.Name = "labelMousePos";
             this.labelMousePos.Size = new System.Drawing.Size(105, 14);
@@ -246,9 +248,9 @@ namespace SPY
             this._checkBoxFreeMode.AutoSize = true;
             this._checkBoxFreeMode.Checked = true;
             this._checkBoxFreeMode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._checkBoxFreeMode.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._checkBoxFreeMode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._checkBoxFreeMode.ForeColor = System.Drawing.Color.Salmon;
-            this._checkBoxFreeMode.Location = new System.Drawing.Point(217, 14);
+            this._checkBoxFreeMode.Location = new System.Drawing.Point(217, 13);
             this._checkBoxFreeMode.Margin = new System.Windows.Forms.Padding(2);
             this._checkBoxFreeMode.Name = "_checkBoxFreeMode";
             this._checkBoxFreeMode.Size = new System.Drawing.Size(111, 16);
@@ -261,9 +263,9 @@ namespace SPY
             // _Label5
             // 
             this._Label5.AutoSize = true;
-            this._Label5.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label5.Location = new System.Drawing.Point(45, 229);
+            this._Label5.Location = new System.Drawing.Point(45, 211);
             this._Label5.Name = "_Label5";
             this._Label5.Size = new System.Drawing.Size(82, 14);
             this._Label5.TabIndex = 36;
@@ -272,11 +274,11 @@ namespace SPY
             // 
             // textBoxWinTitle
             // 
-            this.textBoxWinTitle.Location = new System.Drawing.Point(130, 226);
+            this.textBoxWinTitle.Location = new System.Drawing.Point(130, 209);
             this.textBoxWinTitle.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWinTitle.Multiline = true;
             this.textBoxWinTitle.Name = "textBoxWinTitle";
-            this.textBoxWinTitle.Size = new System.Drawing.Size(197, 39);
+            this.textBoxWinTitle.Size = new System.Drawing.Size(197, 36);
             this.textBoxWinTitle.TabIndex = 3;
             // 
             // PicMenu1
@@ -423,9 +425,9 @@ namespace SPY
             // _labelColorValue
             // 
             this._labelColorValue.AutoSize = true;
-            this._labelColorValue.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._labelColorValue.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._labelColorValue.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._labelColorValue.Location = new System.Drawing.Point(75, 96);
+            this._labelColorValue.Location = new System.Drawing.Point(75, 89);
             this._labelColorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._labelColorValue.Name = "_labelColorValue";
             this._labelColorValue.Size = new System.Drawing.Size(45, 14);
@@ -436,17 +438,17 @@ namespace SPY
             // Label10
             // 
             this.Label10.BackColor = System.Drawing.Color.Transparent;
-            this.Label10.Location = new System.Drawing.Point(47, 93);
+            this.Label10.Location = new System.Drawing.Point(47, 86);
             this.Label10.Name = "Label10";
-            this.Label10.Size = new System.Drawing.Size(20, 22);
+            this.Label10.Size = new System.Drawing.Size(20, 20);
             this.Label10.TabIndex = 44;
             // 
             // _Label12
             // 
             this._Label12.AutoSize = true;
-            this._Label12.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._Label12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._Label12.ForeColor = System.Drawing.SystemColors.Highlight;
-            this._Label12.Location = new System.Drawing.Point(59, 163);
+            this._Label12.Location = new System.Drawing.Point(59, 150);
             this._Label12.Name = "_Label12";
             this._Label12.Size = new System.Drawing.Size(65, 12);
             this._Label12.TabIndex = 45;
@@ -455,19 +457,43 @@ namespace SPY
             // 
             // _Label16Decimal
             // 
-            this._Label16Decimal.Location = new System.Drawing.Point(131, 158);
+            this._Label16Decimal.Location = new System.Drawing.Point(131, 146);
             this._Label16Decimal.Name = "_Label16Decimal";
-            this._Label16Decimal.Size = new System.Drawing.Size(196, 22);
+            this._Label16Decimal.Size = new System.Drawing.Size(196, 20);
             this._Label16Decimal.TabIndex = 46;
             this._Label16Decimal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._Label16Decimal.DoubleClick += new System.EventHandler(this.双击复制);
             // 
+            // pictureBoxConvert
+            // 
+            this.pictureBoxConvert.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxConvert.Image = global::SPY.My.Resources.Resources.convert;
+            this.pictureBoxConvert.Location = new System.Drawing.Point(352, 354);
+            this.pictureBoxConvert.Name = "pictureBoxConvert";
+            this.pictureBoxConvert.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxConvert.TabIndex = 48;
+            this.pictureBoxConvert.TabStop = false;
+            this.pictureBoxConvert.Click += new System.EventHandler(this.pictureBoxConvert_Click);
+            // 
+            // _PictureBox3
+            // 
+            this._PictureBox3.Image = global::SPY.My.Resources.Resources.close;
+            this._PictureBox3.Location = new System.Drawing.Point(346, 173);
+            this._PictureBox3.Name = "_PictureBox3";
+            this._PictureBox3.Size = new System.Drawing.Size(26, 21);
+            this._PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this._PictureBox3.TabIndex = 47;
+            this._PictureBox3.TabStop = false;
+            this._PictureBox3.Click += new System.EventHandler(this.弹出菜单2);
+            this._PictureBox3.MouseEnter += new System.EventHandler(this.PictureBox3_MouseEnter);
+            this._PictureBox3.MouseLeave += new System.EventHandler(this.PictureBox3_MouseLeave);
+            // 
             // _pictureBoxSnap
             // 
-            this._pictureBoxSnap.Location = new System.Drawing.Point(331, 64);
+            this._pictureBoxSnap.Location = new System.Drawing.Point(331, 59);
             this._pictureBoxSnap.Margin = new System.Windows.Forms.Padding(2);
             this._pictureBoxSnap.Name = "_pictureBoxSnap";
-            this._pictureBoxSnap.Size = new System.Drawing.Size(40, 43);
+            this._pictureBoxSnap.Size = new System.Drawing.Size(40, 40);
             this._pictureBoxSnap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this._pictureBoxSnap.TabIndex = 43;
             this._pictureBoxSnap.TabStop = false;
@@ -478,9 +504,9 @@ namespace SPY
             this._PictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this._PictureBox4.Image = global::SPY.My.Resources.Resources.setting;
-            this._PictureBox4.Location = new System.Drawing.Point(352, 128);
+            this._PictureBox4.Location = new System.Drawing.Point(352, 118);
             this._PictureBox4.Name = "_PictureBox4";
-            this._PictureBox4.Size = new System.Drawing.Size(20, 22);
+            this._PictureBox4.Size = new System.Drawing.Size(20, 20);
             this._PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this._PictureBox4.TabIndex = 42;
             this._PictureBox4.TabStop = false;
@@ -493,9 +519,9 @@ namespace SPY
             this._PictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this._PictureBox2.Image = global::SPY.My.Resources.Resources.writetext;
-            this._PictureBox2.Location = new System.Drawing.Point(352, 329);
+            this._PictureBox2.Location = new System.Drawing.Point(352, 304);
             this._PictureBox2.Name = "_PictureBox2";
-            this._PictureBox2.Size = new System.Drawing.Size(20, 22);
+            this._PictureBox2.Size = new System.Drawing.Size(20, 20);
             this._PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this._PictureBox2.TabIndex = 40;
             this._PictureBox2.TabStop = false;
@@ -507,10 +533,10 @@ namespace SPY
             // 
             this._PictureBoxMouseImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._PictureBoxMouseImage.Image = global::SPY.My.Resources.Resources.drag;
-            this._PictureBoxMouseImage.Location = new System.Drawing.Point(338, 14);
+            this._PictureBoxMouseImage.Location = new System.Drawing.Point(338, 13);
             this._PictureBoxMouseImage.Margin = new System.Windows.Forms.Padding(2);
             this._PictureBoxMouseImage.Name = "_PictureBoxMouseImage";
-            this._PictureBoxMouseImage.Size = new System.Drawing.Size(28, 30);
+            this._PictureBoxMouseImage.Size = new System.Drawing.Size(28, 28);
             this._PictureBoxMouseImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this._PictureBoxMouseImage.TabIndex = 0;
             this._PictureBoxMouseImage.TabStop = false;
@@ -519,25 +545,13 @@ namespace SPY
             this._PictureBoxMouseImage.MouseHover += new System.EventHandler(this.PictureBox1_MouseHover);
             this._PictureBoxMouseImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.松开图片);
             // 
-            // _PictureBox3
-            // 
-            this._PictureBox3.Image = global::SPY.My.Resources.Resources.close;
-            this._PictureBox3.Location = new System.Drawing.Point(346, 187);
-            this._PictureBox3.Name = "_PictureBox3";
-            this._PictureBox3.Size = new System.Drawing.Size(26, 23);
-            this._PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this._PictureBox3.TabIndex = 47;
-            this._PictureBox3.TabStop = false;
-            this._PictureBox3.Click += new System.EventHandler(this.弹出菜单2);
-            this._PictureBox3.MouseEnter += new System.EventHandler(this.PictureBox3_MouseEnter);
-            this._PictureBox3.MouseLeave += new System.EventHandler(this.PictureBox3_MouseLeave);
-            // 
             // SpyForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(381, 463);
+            this.ClientSize = new System.Drawing.Size(381, 427);
+            this.Controls.Add(this.pictureBoxConvert);
             this.Controls.Add(this._PictureBox3);
             this.Controls.Add(this._Label16Decimal);
             this.Controls.Add(this._Label12);
@@ -577,11 +591,12 @@ namespace SPY
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.PicMenu1.ResumeLayout(false);
             this.SetMenu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConvert)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._PictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBoxSnap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBoxMouseImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._PictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1355,6 +1370,7 @@ namespace SPY
 
         private TextBox _textBoxHwnd;
         private PictureBox _PictureBox3;
+        private PictureBox pictureBoxConvert;
 
         public TextBox textBoxHwnd
         {
