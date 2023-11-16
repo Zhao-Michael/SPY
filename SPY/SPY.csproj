@@ -7,10 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>True</UseWPF>
+    <ApplicationIcon>home.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-  
+    <Content Include="home.ico" />
   </ItemGroup>
 
 </Project>

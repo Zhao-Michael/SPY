@@ -189,3 +189,4 @@ _Pvt_Extensions/
 ModelManifest.xml
 /.vs/SPY/v15/Server/sqlite3
 /.vs
+/SPY/.vs/SPY.csproj.dtbcache.json
