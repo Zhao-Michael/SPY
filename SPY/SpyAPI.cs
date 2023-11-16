@@ -26,6 +26,13 @@ namespace SPY
         // 获取鼠标位置
         [DllImport("user32.dll")]
         public static extern bool GetCursorPos(ref Point lpPoint);
+
+        [DllImport("SHCore.dll", SetLastError = true)]
+        public static extern bool SetProcessDpiAwareness(PROCESS_DPI_AWARENESS awareness);
+
+        [DllImport("SHCore.dll", SetLastError = true)]
+        public static extern void GetProcessDpiAwareness(IntPtr hprocess, out PROCESS_DPI_AWARENESS awareness);
+
         // 获取指针处窗口句柄
         [DllImport("user32")]
         public static extern int WindowFromPoint(Point Point);
@@ -98,6 +105,12 @@ namespace SPY
         [DllImport("gdi32", EntryPoint = "Rectangle")]
         public static extern int Rectangle(int hdc, int X1, int Y1, int X2, int Y2);
 
+        public enum PROCESS_DPI_AWARENESS
+        {
+            Process_DPI_Unaware = 0,
+            Process_System_DPI_Aware = 1,
+            Process_Per_Monitor_DPI_Aware = 2
+        }
         public struct SHELLEXECUTEINFO
         {
             public int cbSize;

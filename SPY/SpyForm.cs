@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using MahApps.Metro.Controls;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
 
@@ -12,6 +13,8 @@ namespace SPY
 {
     public partial class SpyForm
     {
+        private CancellationTokenSource _CancellationTokenSource = new CancellationTokenSource();
+
         public SpyForm()
         {
             thread = new System.Threading.Thread(check);
@@ -61,6 +64,65 @@ namespace SPY
         /* TODO ERROR: Skipped RegionDirectiveTrivia */
         public int X, Y;
         public bool moveflag = true;
+
+        private void SPYFORM_Load(object sender, EventArgs e)
+        {
+            Intance = this;
+            setsysmenu();
+            SpyAPI.RegisterHotKey(Handle, 234, default, (int)Keys.F3); // 注册热键 
+            CheckForIllegalCrossThreadCalls = false;
+            thread.Start();
+
+            SpyAPI.SetProcessDpiAwareness(SpyAPI.PROCESS_DPI_AWARENESS.Process_Per_Monitor_DPI_Aware);
+            SpyAPI.SetProcessDPIAware();
+
+            int desktopDC = SpyAPI.GetDC(SpyAPI.GetDesktopWindow());
+            int dpiX = SpyAPI.GetDeviceCaps(desktopDC, 90);
+            // 该点颜色
+
+            var t = new System.Threading.Thread(() =>
+            {
+                while (true)
+                {
+                    try
+                    {
+                        if (checkBoxFreeMode.Checked)
+                        {
+                            var bit = EyeDropperHelper.CaptureRegion(new System.Windows.Int32Rect(point.X - 10, point.Y - 10, 20, 20));
+                            queue.Add(bit);
+                            //var color = bit.GetPixel(10, 10);
+                            var winColor = EyeDropperHelper.GetPixelColor(new System.Windows.Point(point.X, point.Y));
+                            var color = Color.FromArgb(255, winColor.R, winColor.G, winColor.B);
+                            labelRGB.Text = $"{winColor.R},{winColor.G},{winColor.B}";
+                            labelHtmlColor.Text = ColorTranslator.ToHtml(color);
+                            Label10.BackColor = color;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    System.Threading.Thread.Sleep(10);
+                }
+            })
+            {
+                IsBackground = true
+            };
+
+            t.Start();
+
+            var q = new System.Threading.Thread(() =>
+            {
+                foreach (var item in queue.GetConsumingEnumerable())
+                    pictureBoxSnap.Image = item;
+            })
+            {
+                IsBackground = true
+            };
+            q.Start();
+
+
+            // 初始化绘图的相关句柄
+            Text = Text + (Program.IsAdmin ? "  -   管理员" : "");
+        }
+
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -121,8 +183,10 @@ namespace SPY
         {
             do
             {
+                if (_CancellationTokenSource.IsCancellationRequested) return;
+
                 SpyAPI.GetCursorPos(ref point);
-                labelMousePos.Text = "当前鼠标位置: (" + point.X.ToString() + "," + point.Y.ToString() + ")";
+                labelMousePos.Text = "(" + point.X.ToString() + "," + point.Y.ToString() + ")";
                 if (flag == true)
                 {
 
@@ -132,7 +196,9 @@ namespace SPY
                     // 窗口大小
 
                     SpyAPI.GetWindowRect(currHwnd, ref currPosition);
-                    labelWinInfo.Text = "窗体位置大小: " + "(" + currPosition.X.ToString() + ":" + currPosition.Y.ToString() + ")" + " " + "(" + (currPosition.Width - currPosition.X).ToString() + " × " + (currPosition.Height - currPosition.Y).ToString() + ")";
+                    var winSie = (currPosition.Width - currPosition.X).ToString() + " × " + (currPosition.Height - currPosition.Y).ToString();
+                    labelWinInfo.Text = "(" + currPosition.X.ToString() + ":" + currPosition.Y.ToString() + ")" + " " + "(" + winSie + ")";
+                    labelWinInfo.Tag = winSie;
                     // 窗口PID
                     uint arglpdwProcessId = 0;
                     SpyAPI.GetWindowThreadProcessId((uint)currHwnd, ref arglpdwProcessId);
@@ -148,6 +214,9 @@ namespace SPY
                     {
                         textBoxWinClass.Text = null;
                     }
+
+                    if (_CancellationTokenSource.IsCancellationRequested) return;
+
                     // 窗体文本
                     SpyAPI.GetWindowTextA((IntPtr)int.Parse(textBoxHwnd.Text), classname, 255);
                     textBoxWinText.Text = classname.ToString();
@@ -182,7 +251,11 @@ namespace SPY
 
                 }
 
+                if (_CancellationTokenSource.IsCancellationRequested) return;
+
                 System.Threading.Thread.Sleep(50);
+
+                if (_CancellationTokenSource.IsCancellationRequested) return;
             }
             while (true);
         }
@@ -225,35 +298,6 @@ namespace SPY
             base.WndProc(ref m);
         }
 
-        private void SPYFORM_Load(object sender, EventArgs e)
-        {
-            Intance = this;
-            setsysmenu();
-            SpyAPI.RegisterHotKey(Handle, 234, default, (int)Keys.F3); // 注册热键 
-            CheckForIllegalCrossThreadCalls = false;
-            thread.Start();
-            float m_dpi = 0.0f;
-            SpyAPI.SetProcessDPIAware();
-            int desktopDC = SpyAPI.GetDC(SpyAPI.GetDesktopWindow());
-            int dpiX = SpyAPI.GetDeviceCaps(desktopDC, 90);
-            var bit = new Bitmap(20, 20);
-            var g = Graphics.FromImage(bit);
-            // 该点颜色
-
-            var t = new System.Threading.Thread(() => { while (true) { try { if (checkBoxFreeMode.Checked) { g.CopyFromScreen(new Point(point.X - 10, point.Y - 10), new Point(0, 0), new Size(20, 20)); queue.Add((Bitmap)bit.Clone()); var color = bit.GetPixel(10, 10); labelColorValue.Text = "颜色: " + Strings.Mid(color.ToString(), 15).Replace("]", "").Replace(" ", "") + " " + ColorTranslator.ToHtml(color); Label10.BackColor = color; } } catch (Exception ex) { } System.Threading.Thread.Sleep(10); } }) { IsBackground = true };
-            t.Start();
-            var q = new System.Threading.Thread(() => { foreach (var item in queue.GetConsumingEnumerable()) pictureBoxSnap.Image = item; }) { IsBackground = true };
-            q.Start();
-
-
-            // 初始化绘图的相关句柄
-
-
-        }
-
-
-
-
         /* TODO ERROR: Skipped RegionDirectiveTrivia */
         [DllImport("user32.dll")]
         static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
@@ -281,10 +325,10 @@ namespace SPY
         /* TODO ERROR: Skipped EndRegionDirectiveTrivia */
         private void SPYFORM_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _CancellationTokenSource.Cancel();
             Hide();
             SpyAPI.UnRegisterHotKey(Handle, 234);
             SpyAPI.SystemParametersInfoA(87, 0, 0, 0x2);
-            thread.Abort();
             Environment.Exit(0);
         }
 
@@ -484,35 +528,31 @@ namespace SPY
             }
         }
 
-        /* TODO ERROR: Skipped EndRegionDirectiveTrivia */
         private void 双击复制(object sender, EventArgs e)
         {
             if (sender.Equals(Label2))
-                My.MyProject.Computer.Clipboard.SetText(textBoxHwnd.Text);
+                Clipboard.SetText(textBoxHwnd.Text);
             if (sender.Equals(Label3))
-                My.MyProject.Computer.Clipboard.SetText(textBoxPID.Text);
+                Clipboard.SetText(textBoxPID.Text);
             if (sender.Equals(Label5))
-                My.MyProject.Computer.Clipboard.SetText(textBoxWinTitle.Text);
+                Clipboard.SetText(textBoxWinTitle.Text);
             if (sender.Equals(Label8))
-                My.MyProject.Computer.Clipboard.SetText(textBoxWinClass.Text);
+                Clipboard.SetText(textBoxWinClass.Text);
             if (sender.Equals(Label9))
-                My.MyProject.Computer.Clipboard.SetText(textBoxWinText.Text);
+                Clipboard.SetText(textBoxWinText.Text);
             if (sender.Equals(Label11))
-                My.MyProject.Computer.Clipboard.SetText(textBoxEXEPath.Text);
+                Clipboard.SetText(textBoxEXEPath.Text);
             if (sender.Equals(Label12) | sender.Equals(Label16Decimal))
-                My.MyProject.Computer.Clipboard.SetText(Label16Decimal.Text);
-            if (sender.Equals(labelColorValue))
-            {
-                if (labelColorValue.Text.Contains("#"))
-                {
-                    My.MyProject.Computer.Clipboard.SetText("#" + labelColorValue.Text.Split('#')[1]);
-                }
-            }
+                Clipboard.SetText(Label16Decimal.Text);
+            if (sender.Equals(labelWinInfo))
+                Clipboard.SetText(labelWinInfo.Tag.ToString());
+            if (sender.Equals(labelRGB) || sender.Equals(labelRGB))
+                Clipboard.SetText((sender as Label)?.Text);
         }
 
         private void 双击复制句柄(object sender, EventArgs e)
         {
-            My.MyProject.Computer.Clipboard.SetText(textBoxHwnd.Text);
+            Clipboard.SetText(textBoxHwnd.Text);
         }
 
         private void PictureBox5_Paint(object sender, PaintEventArgs e)
